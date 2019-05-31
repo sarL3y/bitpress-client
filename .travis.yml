@@ -1,5 +1,12 @@
 language: node_js
- node_js: node
- cache:
-   directories:
-     - node_modules
+node_js: node
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: g18WjbFzw7Lh5LexrBkOr+nAnNOoCzqb+E8lRd+uQYZNsktqVHB/Hvt65BS8b+efWP1rS0nyqnIIUuMMxHu/1iYCme/Wa+HHV+TJLpkn4DzPX5t+rFoWa1TcK0iePs2KONr2M7jMmauhOgJCM1aphcNdyecrJGJ3/b0TjslG7FFDsxYPzMl5eu3l9cois3QWIZ4gT2zXfWpxqSrMausPlbcUN+EBDGyAce+9d59nIi495wqqjsxIlYyYg+3HbQwIUvUCTx3zkq3hvcNH+PQdo8fo6WmkQwtZg0OCY3WI26afUHwuRpbsKGUje04oqfzpAycT0L1qSm2/GxApANxmZR/GZDY25Wi3mK5zUqg+cPCXo53JwZo3Mc7ZoR5QkIpDDRUJa2ncSiNubCLVHY9bHrgZHOja8ITu+JgZNwr5k7Zajygs98nCsvt92nE9Td4FfJ1fwHW6j17tMDO6lMwUqoopoYfxYu2fnk5infhL+SaRsVvMgdF4DaXeBYy2LDVBIMC3za8kUnjN4eTnJY/1yYhXauqXv2+IqX4c/gKbBumZYVHCe7NuL3T/Yz6AYtmjkHELBaqPWp/wcyApOSMlFoRr2b1UYy524fL1N3R4jlQCLNwSVVm5rEoNn9UYAmEsCU/YwK6ZjyOyzu7vfiJHlrhtqdq/RLK7R2NU4UPuQbo=
+  app: bitpress-client
+  on:
+    repo: sarL3y/bitpress-client
