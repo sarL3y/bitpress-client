@@ -1,10 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Feed from './Feed';
+
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// function App() {
+//     // const [ user, setUser ] = useState({ username: null })
+
+//     // const saveUser = newUser => {
+//     //     localStorage.setItem("user", newUser.username);
+//     //     setUser(newUser);
+//     // }
+
+//     // const logout = () => {
+//     //     localStorage.clear();
+//     //     setUser({ username: null });
+//     // }
+
+//     return (
+//         <Card />
+//     )
+// }
+
+ReactDOM.render(
+    <Feed />, 
+    document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
