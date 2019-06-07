@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../firebase';
 
 import './Navbar.scss';
 
 export default function Navbar(props) {
-    async function logout() {
+    async function logout(e) {
+        e.preventDefault();
         await firebase.logout();
         props.history.push("/");
     }
@@ -28,7 +29,7 @@ export default function Navbar(props) {
                     <div className="navbar-buttons">
                         <Link className="button" to="/dashboard">Dashboard</Link>
                         <Link className="button" to="/profile">Profile</Link>
-                        <a className="button" onClick={logout}>Logout</a>
+                        <a href="/logout"className="button" onClick={logout}>Logout</a>
                     </div>
                 )}
             </div>

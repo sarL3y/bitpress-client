@@ -7,7 +7,7 @@ import './Card.scss';
 const Card = (props) => {
 
   const [data, setData] = useState({ cards: [] });
-  const [url, setUrl] = useState('http://localhost:8080/api/board');
+  const [url/*, setUrl*/] = useState('http://localhost:8080/api/board');
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

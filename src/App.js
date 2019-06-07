@@ -12,8 +12,8 @@ import './App.scss';
 
 export default function App() {
 
-    const [isLoading, setIsLoading] = useState(false);
     const [firebaseInitialized, setFirebaseInitialized] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         firebase.isInitialized()
