@@ -8,10 +8,20 @@
 
 .navbar-brand {
     display: flex;
+    padding: 0px 0px 0px 15px;
 }
 
 .navbar-links {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    display: flex;
+}
+
+.navbar-buttons > a {
+    padding: 0px 15px 0px 0px;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
 }
