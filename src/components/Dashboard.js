@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from '../firebase';
 
 import Navbar from './Navbar';
 import Feed from './Feed';
@@ -8,7 +9,8 @@ const Dashboard = props => {
         <main>
             <Navbar {...props} />
             <div>
-                <h2>BitPress Dashboard</h2>
+                <h2>Dashboard</h2>
+                <h3>Hello, {firebase.getCurrentUsername()}.</h3>
                 <p>Lorem Ipsum</p>
                 <Feed />
             </div>
