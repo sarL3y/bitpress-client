@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import { API_BASE_URL } from './config';
 
-import './Card.css';
+import './Card.scss';
 
 const Card = (props) => {
 
@@ -29,23 +29,22 @@ const Card = (props) => {
     fetchData();
   }, [url]);
 
-  if (isLoading) {
-    return <div>Loading...</div>
-  } return (
-    <ul>
-      {data.cards.map((item, index) => (
-        <li key={index}>
-          <div className='card'>
-            <img src={item.image} alt='' />
-            <h3 className='card-title'>{item.title}</h3>
-            <p className='card-author'>{item.author}</p>
-            <p className='card-date'>{item.date}</p>
-            <p>{item.text}</p>
-          </div>
-        </li>
-      ))}
-    </ul>
-  );
+  return isLoading ?
+    <div>Loading...</div> : (
+      <ul>
+        {data.cards.map((item, index) => (
+          <li key={index}>
+            <div className='card'>
+              <img src={item.image} alt='' />
+              <h3 className='card-title'>{item.title}</h3>
+              <p className='card-author'>{item.author}</p>
+              <p className='card-date'>{item.date}</p>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
 };
 
 export default Card;

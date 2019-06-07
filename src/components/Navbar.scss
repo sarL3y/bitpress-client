@@ -1,0 +1,17 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 250px;
+    width: 100vw;
+}
+
+.navbar-brand {
+    display: flex;
+}
+
+.navbar-links {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}

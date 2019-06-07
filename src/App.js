@@ -1,0 +1,43 @@
+import React, { useState, useEffect } from 'react';
+import firebase from './firebase';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import Dashboard from './components/Dashboard';
+import HomePage from './components/HomePage';
+import Login from './components/Login';
+import Register from './components/Register';
+import Profile from './components/Profile';
+
+import './App.scss';
+
+export default function App() {
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [firebaseInitialized, setFirebaseInitialized] = useState(false);
+
+    useEffect(() => {
+        firebase.isInitialized()
+            .then(val => {
+                setFirebaseInitialized(val);
+            });
+    });
+
+    return firebaseInitialized !== false ? (
+        <main className="App-header">
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/dashboard" component={Dashboard} />
+                    <Route exact path="/profile" component={Profile} />
+                </Switch>
+            </Router>
+        </main>
+    ) : (
+        <header>
+            <h1>BitPress</h1>
+            <p>Loading...</p>
+        </header>
+    );
+};
