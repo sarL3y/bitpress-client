@@ -46,15 +46,42 @@ class Firebase {
         return this.auth.currentUser && this.auth.currentUser.displayName;
     }
 
-    // GET TOPICS
-    // getTopics() {
-    //  
+    // async getPersonalTopics() {
+    //     const personalTopics = await this.db.collection('topics').get({ userId: this.auth.getCurrentUsername() })
+
+    //     return personalTopics;
     // }
 
-    // ADD TOPIC
-    // addTopics() {
-    //  
-    // }
+    async getTopics() {
+        const topics = await this.db.collection('topics').get()
+
+        return topics;
+    }
+
+    async addTopic(topic) {
+        if(!this.auth.currentUser) {
+            return alert("Not authorized");
+        }
+
+        return this.db.collection('topics').add({
+            topic
+        });
+    }
+
+    async getSources() {
+        const sources = await this.db.collection('sources').get()
+        return sources;
+    }
+
+    async addSource(source) {
+        if(!this.auth.currentUser) {
+            return alert("Not authorized");
+        }
+
+        return this.db.collection('sources').add({
+            source
+        });
+    }
 }
 
 export default new Firebase(); 

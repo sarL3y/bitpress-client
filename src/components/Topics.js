@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import firebase from '../firebase';
 
+// import Topic from './Topic';
+
 export default function Topics(props) {
 
     const [topics, setTopics] = useState([]);
@@ -30,8 +32,10 @@ export default function Topics(props) {
     }
 
     async function addTopic() {
+        let userId = firebase.getCurrentUsername();
+
         try {
-            await firebase.addTopic({ topic });
+            await firebase.addTopic({ topic, userId });
             setTopic("");
             setIsLoading(true);
         } catch(error) {
@@ -41,22 +45,37 @@ export default function Topics(props) {
 
     return (
         <div className="container-topics">
-            <h5>{topics.length} out of infinity...</h5>
+            <h5>{topics.length} topics selected.</h5>
             <form onSubmit={e => e.preventDefault() && false}>
-            <div className="form-input-text">
-                <input 
-                    placeholder="Nancy Pelosi"
-                    type="text"
-                    value={topic}
-                    aria-label="topic"
-                    onChange={e => setTopic(e.target.value)}
-                />
+                <div className="form-input-text">
+                    <input 
+                        placeholder="Nancy Pelosi"
+                        type="text"
+                        value={topic}
+                        aria-label="topic"
+                        onChange={e => setTopic(e.target.value)}
+                    />
 
-                <button type="submit" onClick={addTopic}>
-                    Add
-                </button>
-            </div>
+                    <button type="submit" onClick={addTopic}>
+                        Add
+                    </button>
+                </div>
             </form>
+
+            <div className="topics">
+                {topics.map((topic, index) => (
+                    <div key={index} className="topic">
+                            <p>{topic.data.topic}</p>
+                            <a 
+                                href="/deleteTopic"
+                                className="button-delete"
+                                onClick={e => e.preventDefault()}
+                            >
+                                X
+                            </a>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

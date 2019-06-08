@@ -9,11 +9,13 @@ const Profile = props => {
     return (
         <main>
             <Navbar {...props} />
+
             <div className="container-profile">
                 <h2>BitPress Profile</h2>
                 <p>Lorem Ipsum</p>
                 <h3>Preferences</h3>
                 <Preferences />
+                
             </div>
         </main>
     );

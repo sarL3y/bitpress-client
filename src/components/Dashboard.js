@@ -5,6 +5,13 @@ import Navbar from './Navbar';
 import Feed from './Feed';
 
 const Dashboard = props => {
+
+    if(!firebase.getCurrentUsername()) {
+        alert("Please login");
+        props.history.replace("/login");
+        return null;
+    }
+    
     return (
         <main>
             <Navbar {...props} />
