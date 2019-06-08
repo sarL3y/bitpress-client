@@ -68,6 +68,13 @@ class Firebase {
         });
     }
 
+    deleteTopic(id) {
+        return this.db
+            .collection('topics')
+            .doc(id)
+            .delete();
+    }
+
     async getSources() {
         const sources = await this.db.collection('sources').get()
         return sources;
@@ -81,6 +88,13 @@ class Firebase {
         return this.db.collection('sources').add({
             source
         });
+    }
+
+    deleteSource(id) {
+        return this.db
+            .collection('sources')
+            .doc(id)
+            .delete();
     }
 }
 

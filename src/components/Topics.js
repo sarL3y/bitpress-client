@@ -43,6 +43,12 @@ export default function Topics(props) {
         }
     }
 
+    async function deleteTopic(e, id) {
+        e.preventDefault();
+        await firebase.deleteTopic(id);
+        setIsLoading(true);
+    }
+
     return (
         <div className="container-topics">
             <h5>{topics.length} topics selected.</h5>
@@ -69,7 +75,7 @@ export default function Topics(props) {
                             <a 
                                 href="/deleteTopic"
                                 className="button-delete"
-                                onClick={e => e.preventDefault()}
+                                onClick={e => deleteTopic(e, topic.id)}
                             >
                                 X
                             </a>

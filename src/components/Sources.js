@@ -39,13 +39,19 @@ export default function Sources(props) {
         }
     }
 
+    async function deleteSource(e, id) {
+        e.preventDefault();
+        await firebase.deleteSource(id);
+        setIsLoading(true);
+    }
+
     return (
         <div className="container-sources">
             <h5>{sources.length} sources selected</h5>
             <form onSubmit={e => e.preventDefault() && false}>
                 <div className="form-input-text">
                     <input 
-                        placeholder="CNN"
+                        placeholder="CNN, MSNBC..."
                         type="text"
                         value={source}
                         aria-label="source"
@@ -65,7 +71,7 @@ export default function Sources(props) {
                         <a 
                             href="/deleteSource"
                             className="button-delete"
-                            onClick={e => e.preventDefault()}
+                            onClick={e => deleteSource(e, source.id)}
                         >
                             X
                         </a>
