@@ -41,22 +41,37 @@ export default function Sources(props) {
 
     return (
         <div className="container-sources">
-            <h5>{sources.length} out of infinity...</h5>
+            <h5>{sources.length} sources selected</h5>
             <form onSubmit={e => e.preventDefault() && false}>
-            <div className="form-input-text">
-                <input 
-                    placeholder="CNN"
-                    type="text"
-                    value={source}
-                    aria-label="source"
-                    onChange={e => setSource(e.target.value)}
-                />
+                <div className="form-input-text">
+                    <input 
+                        placeholder="CNN"
+                        type="text"
+                        value={source}
+                        aria-label="source"
+                        onChange={e => setSource(e.target.value)}
+                    />
 
-                <button type="submit" onClick={addTopic}>
-                    Add
-                </button>
-            </div>
+                    <button type="submit" onClick={addTopic}>
+                        Add
+                    </button>
+                </div>
             </form>
+
+            <div className="sources">
+                {sources.map((source, index) => (
+                    <div key={index} className="source">
+                        <p>{source.data.source}</p>
+                        <a 
+                            href="/deleteSource"
+                            className="button-delete"
+                            onClick={e => e.preventDefault()}
+                        >
+                            X
+                        </a>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
