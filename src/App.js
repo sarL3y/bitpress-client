@@ -23,7 +23,7 @@ export default function App() {
     });
 
     return firebaseInitialized !== false ? (
-        <main className="App-header">
+        <main className="App">
             <Router>
                 <Switch>
                     <Route exact path="/" component={HomePage} />
@@ -35,9 +35,11 @@ export default function App() {
             </Router>
         </main>
     ) : (
-        <header>
-            <h1>BitPress</h1>
-            <p>Loading...</p>
-        </header>
+        <main className="App">
+            <header className="container-header">
+                <h1>bitPress</h1>
+                <p>Loading...</p>
+            </header>
+        </main>
     );
 };

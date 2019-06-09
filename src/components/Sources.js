@@ -6,6 +6,7 @@ export default function Sources(props) {
 
     const [sources, setSources] = useState([]);
     const [source, setSource] = useState("");
+    const [isSource, setIsSource] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     
     useEffect(() => {
@@ -29,7 +30,7 @@ export default function Sources(props) {
         return null;
     }
 
-    async function addTopic() {
+    async function addSource() {
         try {
             await firebase.addSource({ source });
             setSource("");
@@ -58,13 +59,28 @@ export default function Sources(props) {
                         onChange={e => setSource(e.target.value)}
                     />
 
-                    <button type="submit" onClick={addTopic}>
+                    <button type="submit" onClick={addSource}>
                         Add
                     </button>
+
+                    {sources.map((source, index) => (
+                        <div key={index} className="source">
+                            <input 
+                                type="checkbox"
+                                checked={isSource}
+                                value={source.data.source}
+                                aria-label="source"
+                                onChange={e => setSource(e.target.value)}
+                            />
+                            <label>
+                                {source.data.source}
+                            </label>
+                        </div>
+                    ))}
                 </div>
             </form>
 
-            <div className="sources">
+            {/* <div className="sources">
                 {sources.map((source, index) => (
                     <div key={index} className="source">
                         <p>{source.data.source}</p>
@@ -77,7 +93,7 @@ export default function Sources(props) {
                         </a>
                     </div>
                 ))}
-            </div>
+            </div> */}
         </div>
     );
 };

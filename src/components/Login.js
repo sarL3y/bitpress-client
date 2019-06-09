@@ -3,6 +3,8 @@ import firebase from '../firebase';
 
 import Navbar from './Navbar';
 
+import './Login.scss';
+
 const Login = props => {
 
     const [email, setEmail] = useState(null);
@@ -22,32 +24,33 @@ const Login = props => {
         <main>
             <Navbar {...props} />
             <div className="container-login">
-                <h2>BitPress Login</h2>
-                <form onSubmit={e => e.preventDefault() && false}>
-                    <div className="form-input-email">
-                        <input 
-                            placeholder="Email"
-                            type="email"
-                            value={email}
-                            aria-label="uemail"
-                            onChange={e => setEmail(e.target.value)}
-                            />
-                    </div>
-                    <div className="form-input-password">
-                        <input 
-                            placeholder="Password"
-                            type="password"
-                            value={password}
-                            aria-label="password"
-                            onChange={e => setPassword(e.target.value)}
-                            />
-                    </div>
+                <div className="form-login">
+                    <h2>BitPress Login</h2>
+                    <form onSubmit={e => e.preventDefault() && false}>
+                        <div className="form-input-email">
+                            <input 
+                                placeholder="Email"
+                                type="email"
+                                value={email}
+                                aria-label="uemail"
+                                onChange={e => setEmail(e.target.value)}
+                                />
+                        </div>
+                        <div className="form-input-password">
+                            <input 
+                                placeholder="Password"
+                                type="password"
+                                value={password}
+                                aria-label="password"
+                                onChange={e => setPassword(e.target.value)}
+                                />
+                        </div>
 
-                    <button type="submit" className="button" onClick={login}>
-                    Login
-                    </button>
-                </form>
-                <p>Lorem Ipsum</p>
+                        <button type="submit" className="button primary" onClick={login}>
+                        Login
+                        </button>
+                    </form>
+                </div>
             </div>
         </main>
     );

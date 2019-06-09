@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import firebase from '../firebase';
+import firebase from '../firebase';
 
-import Topics from './Topics';
-import Sources from './Sources';
-
-export default function Preferences() {
+export default function PersonalInfo() {
 
     // const [topic, setTopic] = useState("");
     // const [topics, setTopics] = useState([]);
@@ -20,16 +17,9 @@ export default function Preferences() {
     // }, [isLoading])
 
     return (
-        <main>
-            <div className="container-topics">
-                <h4>Topics</h4>
-                <Topics />
-            </div>
-            
-            <div className="container-topics">
-                <h4>Sources</h4>
-                <Sources />
-            </div>
-        </main>
+        <div className="personal-info">
+            <p>Username: {firebase.auth.currentUser.displayName}</p>
+            <p>Email: {firebase.auth.currentUser.email}</p>
+        </div>
     );
 };

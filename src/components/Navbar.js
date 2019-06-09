@@ -15,19 +15,19 @@ export default function Navbar(props) {
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <h1>
-                    <Link to="/">BitPress</Link>
+                    <Link to="/">bitPress</Link>
                 </h1>
             </div>
 
             <div className="navbar-links">
                 {!firebase.getCurrentUsername() ? (
                     <div className="navbar-buttons">
-                        <Link className="button" to="/register">Sign Up</Link>
-                        <Link  className="button" to="/login">Login</Link>
+                        <Link className="button primary" to="/register">Sign Up</Link>
+                        <Link className="button" to="/login">Login</Link>
                     </div>
                 ) : (
                     <div className="navbar-buttons">
-                        <Link className="button" to="/dashboard">Dashboard</Link>
+                        <Link className="button primary" to="/dashboard">Dashboard</Link>
                         <Link className="button" to="/profile">Profile</Link>
                         <a href="/logout"className="button" onClick={logout}>Logout</a>
                     </div>

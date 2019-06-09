@@ -1,14 +1,19 @@
-.navbar {
+nav.navbar {
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-height: 250px;
+    background-color: #CD2E3E;
+    height: 10vh;
     width: 100vw;
+    margin-bottom: 200px;
 }
 
 .navbar-brand {
     display: flex;
-    padding: 0px 0px 0px 15px;
+    padding: 0px 10px 0px 15px;
+    font-family: 'IBMPlexSerif-Medium', serif;
+    text-shadow: 1px 1px 1px rgba(70, 70, 70, 0.543);
 }
 
 .navbar-links {
@@ -18,10 +23,36 @@
 }
 
 .navbar-buttons > a {
-    padding: 0px 15px 0px 0px;
+    padding: 10px 20px 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: rgb(213, 70, 70);
+    margin-right: 15px;
+
+    &:first-child {
+        padding: 14px 25px 14px 25px;
+    }
+
+    &:last-child {
+        margin-right: 45px;
+    }
+
+    &:hover {
+        background-color: rgb(210, 3, 23);
+    }
 }
 
 a {
     text-decoration: none;
     color: #ffffff;
+}
+
+a.primary {
+    background-color: rgb(19, 91, 51);
+    color: #ffffff;
+
+    &:hover {
+        background-color: rgb(1, 79, 36);
+    }
 }

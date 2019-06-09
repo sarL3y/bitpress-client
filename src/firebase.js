@@ -96,6 +96,33 @@ class Firebase {
             .doc(id)
             .delete();
     }
+
+    async addReader() {
+        const reader = await this.db
+            .collection('readers')
+            .where('uid', "==", this.auth.currentUser.uid)
+            .get();
+        
+        let count = 0;
+
+        reader.forEach(val => {
+            count++;
+        });
+
+        if(!count) {
+            return this.db.collection('readers').add({
+                uid: this.auth.currentUser.uid,
+                username: this.auth.currentUser.displayName
+            });
+        } else {
+            return true;
+        }
+    }
+
+    async getReaders() {
+         const readers = await this.db.collection('readers').get();
+         return readers;
+    }
 }
 
 export default new Firebase(); 

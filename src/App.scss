@@ -1,9 +1,5 @@
 .App {
   text-align: center;
-}
-
-.App-header {
-  background-color: #CD2E3E;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: #ffffff;
@@ -11,4 +7,24 @@
 
 .App-link {
   color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+@each $name in 'profile' 'dashboard' 'login' 'register' 'homepage' 'personal-info' 'preferences' 'feed' 'topics' 'sources' 'header' {
+  .container-#{$name} {
+    padding: 0px 0px 0px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@each $name in 'profile' 'dashboard' 'login' 'register' 'homepage' 'header' {
+  .container-#{$name} {
+    padding-top: 15vh;
+  }
 }

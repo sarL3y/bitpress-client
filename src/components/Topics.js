@@ -9,20 +9,35 @@ export default function Topics(props) {
     const [topics, setTopics] = useState([]);
     const [topic, setTopic] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [readers, setReaders] = useState({});
     
     useEffect(() => {
-        firebase.getTopics()
-            .then(topics => {
-                let newTopics = [];
-                topics.forEach(topic => {
-                    newTopics.push({
-                        id: topic.id,
-                        data: topic.data().topic
-                    });
-                })
-                setTopics(newTopics);
-                setIsLoading(false);
-            })
+
+        let tempReaders = {};
+
+        firebase.getReaders().then(readers => {
+            
+            readers.forEach(reader => {
+                tempReaders[reader.data().uid] = reader.data().username;
+            });
+
+            setReaders(tempReaders);
+
+            firebase.getTopics()
+                .then(topics => {
+                    let newTopics = [];
+                    topics.forEach(topic => {
+                        newTopics.push({
+                            id: topic.id,
+                            data: topic.data().topic
+                        });
+                    })
+                    setTopics(newTopics);
+                    setIsLoading(false);
+                });
+    
+                firebase.addReader();
+        })
     }, [isLoading])
 
     if(!firebase.getCurrentUsername()) {
@@ -32,10 +47,8 @@ export default function Topics(props) {
     }
 
     async function addTopic() {
-        let userId = firebase.getCurrentUsername();
-
         try {
-            await firebase.addTopic({ topic, userId });
+            await firebase.addTopic({ topic, readers: firebase.auth.currentUser.uid });
             setTopic("");
             setIsLoading(true);
         } catch(error) {
@@ -69,18 +82,24 @@ export default function Topics(props) {
             </form>
 
             <div className="topics">
-                {topics.map((topic, index) => (
-                    <div key={index} className="topic">
-                            <p>{topic.data.topic}</p>
-                            <a 
-                                href="/deleteTopic"
-                                className="button-delete"
-                                onClick={e => deleteTopic(e, topic.id)}
-                            >
-                                X
-                            </a>
+            {topics.map((topic, index) => (
+                <div key={index} className="topic">
+                    <p>{topic.data.topic}</p>
+                    {(firebase.auth.currentUser.uid == topic.data.readers) ? (
+                    <a 
+                        href="/deleteTopic"
+                        className="button-delete"
+                        onClick={e => deleteTopic(e, topic.id)}
+                    >
+                        X
+                    </a>
+                    ) : ""
+                    }
+                    <div>
+                        <p>{console.log(readers.length)}</p>
                     </div>
-                ))}
+                </div>
+            ))}
             </div>
         </div>
     );

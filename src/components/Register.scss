@@ -1,0 +1,14 @@
+.container-register {
+    display: flex;
+    justify-content: space-around;
+}
+
+.primary {
+    background-color: rgb(19, 91, 51);
+    color: #ffffff;
+
+    &:hover {
+        background-color: rgb(1, 79, 36);
+    }
+}
+

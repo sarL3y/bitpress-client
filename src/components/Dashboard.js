@@ -4,6 +4,8 @@ import firebase from '../firebase';
 import Navbar from './Navbar';
 import Feed from './Feed';
 
+import './Dashboard.scss';
+
 const Dashboard = props => {
 
     if(!firebase.getCurrentUsername()) {
@@ -15,11 +17,13 @@ const Dashboard = props => {
     return (
         <main>
             <Navbar {...props} />
-            <div>
-                <h2>Dashboard</h2>
-                <h3>Hello, {firebase.getCurrentUsername()}.</h3>
-                <p>Lorem Ipsum</p>
-                <Feed />
+            <div className="container-dashboard">
+                <div>
+                    <h2>Dashboard</h2>
+                    <h3>Hello, {firebase.getCurrentUsername()}.</h3>
+                    <p>Lorem Ipsum</p>
+                    <Feed />
+                </div>
             </div>
         </main>
     );
