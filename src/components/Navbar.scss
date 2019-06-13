@@ -1,25 +1,61 @@
+$button-color-primary: #385b66;
+
 nav.navbar {
     position: fixed;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #CD2E3E;
-    height: 10vh;
+    justify-content: space-around;
+    background-color: #8e1e1e;
+    max-height: 150px;
     width: 100vw;
-    margin-bottom: 200px;
+    padding: 20px;
+    box-shadow: 0 1px 8px -2px rgba(102, 30, 30, 0.568);
 }
 
 .navbar-brand {
-    display: flex;
-    padding: 0px 10px 0px 15px;
+    order: 1;
+    flex: 1;
+    margin: auto;
     font-family: 'IBMPlexSerif-Medium', serif;
     text-shadow: 1px 1px 1px rgba(70, 70, 70, 0.543);
 }
 
+.navbar-logo {
+    height: auto;
+    width: 175px;
+}
+
 .navbar-links {
+    order: 4;
+    flex: 1;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+
+.navbar-news {
+    order: 2;
+    flex: 2;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    overflow-x: hidden;
+    word-wrap: none;
+}
+
+.navbar-search-form {
+    order: 3;
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    input {
+        padding: 5px;
+        font-size: 16px;
+        min-width: 200px;
+    }
+
+    button {
+        display: none;
+    }
 }
 
 .navbar-buttons > a {
@@ -27,19 +63,21 @@ nav.navbar {
     font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
-    background-color: rgb(213, 70, 70);
-    margin-right: 15px;
+    background-color: #8b3434;
+    margin-right: 10px;
 
     &:first-child {
         padding: 14px 25px 14px 25px;
+        margin-right: 10px;
+        margin-left: 20px;
     }
 
     &:last-child {
-        margin-right: 45px;
+        margin-right: 40px;
     }
 
     &:hover {
-        background-color: rgb(210, 3, 23);
+        background-color: #833030;
     }
 }
 
@@ -49,10 +87,16 @@ a {
 }
 
 a.primary {
-    background-color: rgb(19, 91, 51);
+    background-color: $button-color-primary;
     color: #ffffff;
 
     &:hover {
-        background-color: rgb(1, 79, 36);
+        background-color: #19444e;
+    }
+}
+
+@media (max-width: 600px) {
+    .mobile-hidden {
+        display: none;
     }
 }

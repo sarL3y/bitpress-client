@@ -1,4 +1,26 @@
+// * {
+//     box-sizing: border-box;
+// }
+
 .container-dashboard {
     display: flex;
-    justify-content: space-around;
+}
+
+.row-topics {
+    display: flex;
+    flex: 1;
+    background-color: #a03232;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px;
+    overflow: scroll;
+}
+
+.row-topic {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    margin: auto 12px;
+    font-size: 14px;
+    white-space: nowrap;
 }

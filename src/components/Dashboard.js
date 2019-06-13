@@ -1,47 +1,25 @@
 import React from 'react';
-import firebase from '../firebase';
 
 import Navbar from './Navbar';
+import TopicsBar from './TopicsBar';
 import Feed from './Feed';
 
 import './Dashboard.scss';
 
-const Dashboard = props => {
+export default function Dashboard(props) {
+    console.log('Dashboard loaded');
 
-    if(!firebase.getCurrentUsername()) {
-        alert("Please login");
-        props.history.replace("/login");
-        return null;
-    }
-    
     return (
-        <main>
+        <div>
             <Navbar {...props} />
+
             <div className="container-dashboard">
-                <div>
-                    <h2>Dashboard</h2>
-                    <h3>Hello, {firebase.getCurrentUsername()}.</h3>
-                    <p>Lorem Ipsum</p>
-                    <Feed />
-                </div>
+                <TopicsBar />
             </div>
-        </main>
-    );
+
+            <div className="container-feed">
+                <Feed />
+            </div>
+        </div>
+    ); 
 };
-
-export default Dashboard;
-
-// import React, { useState, useEffect } from 'react';
-
-// import Feed from './Feed';
-
-// export default function Dashboard() {
-
-//     const [isLoading, setIsLoading] = useState(false);
-
-//     return isLoading ? 
-//         <div>Loading...</div> : 
-//             <main>
-//                 <Feed />
-//             </main>;
-// };

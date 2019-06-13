@@ -1,4 +1,10 @@
+$button-color-primary: #385b66;
+
 .container-login {
     display: flex;
     justify-content: space-around;
+}
+
+.button.primary {
+    background-color: $button-color-primary;
 }

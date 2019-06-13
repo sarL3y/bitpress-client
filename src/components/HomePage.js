@@ -1,13 +1,14 @@
 import React from 'react';
+
 import Navbar from './Navbar';
+import TopicsBar from './TopicsBar';
 
 const HomePage = props => {
     return (
         <main>
             <Navbar {...props} />
             <div className="container-homepage">
-                <h2>bitPress HomePage</h2>
-                <p>Lorem Ipsum</p>
+                <TopicsBar />
             </div>
         </main>
     );

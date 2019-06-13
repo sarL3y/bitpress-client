@@ -7,8 +7,8 @@ import './Login.scss';
 
 const Login = props => {
 
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     // const [isLoading, setIsLoading] = useState(false);
 
     async function login() {
@@ -21,7 +21,7 @@ const Login = props => {
     }
     
     return (
-        <main>
+        <main role="main">
             <Navbar {...props} />
             <div className="container-login">
                 <div className="form-login">
@@ -47,7 +47,7 @@ const Login = props => {
                         </div>
 
                         <button type="submit" className="button primary" onClick={login}>
-                        Login
+                            Login
                         </button>
                     </form>
                 </div>

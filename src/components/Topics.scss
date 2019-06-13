@@ -1,0 +1,23 @@
+.container-topics {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.topics {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 600px;
+}
+
+.topic {
+    background-color: #8b3434;
+    padding: 5px;
+    border-radius: 3px;
+
+    a {
+        margin: 0;
+    }
+}

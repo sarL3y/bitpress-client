@@ -1,0 +1,19 @@
+.container-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    background-color: #ffffff;
+    width: 80vw;
+}
+
+.container-personal-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-preferences {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

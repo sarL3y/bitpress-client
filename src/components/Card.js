@@ -1,50 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-// import { API_BASE_URL } from './config';
+
+import useHttp from '../hooks/useHttp';
 
 import './Card.scss';
 
-const Card = (props) => {
+export default function Card() {
+  console.log('Card loaded');
 
-  const [data, setData] = useState({ cards: [] });
-  const [url/*, setUrl*/] = useState('http://localhost:8080/api/board');
-  const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [newFetchedData, setNewFetchedData] = useState([]);
+  const fetchedData = useHttp('https://newsapi.org/v2/everything?q=bitcoin&$pageSize=5&from=2019-05-12&sortBy=publishedAt&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
+  // useEffect(() => {
+  //   setNewFetchedData(fetchedData);
+  // }, [])
 
-      try {
-        const result = await axios(url);
-
-        setData(result.data);
-      } catch(error) {
-        setIsError(true);
-      }
-
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, [url]);
-
-  return isLoading ?
-    <div>Loading...</div> : (
-      <ul>
-        {data.cards.map((item, index) => (
-          <li key={index}>
-            <div className='card'>
-              <img src={item.image} alt='' />
-              <h3 className='card-title'>{item.title}</h3>
-              <p className='card-author'>{item.author}</p>
-              <p className='card-date'>{item.date}</p>
-              <p>{item.text}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+  return !fetchedData ? 
+    <div>Working...</div> : (
+      <div className='card'>
+        <img src={fetchedData.urlToImage} alt='' />
+        <h3 className='card-title'>{fetchedData.cardTitle}</h3>
+        <p className='card-author'>"item.author"</p>
+        <p className='card-date'>"item.date"</p>
+        <p>"item.text"</p>
+      </div>
     )
 };
-
-export default Card;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import firebase from '../firebase';
 
-// import Topic from './Topic';
+import './Topics.scss';
 
 export default function Topics(props) {
 
@@ -13,15 +13,15 @@ export default function Topics(props) {
     
     useEffect(() => {
 
-        let tempReaders = {};
+        // let tempReaders = {};
 
-        firebase.getReaders().then(readers => {
+        // firebase.getReaders().then(readers => {
             
-            readers.forEach(reader => {
-                tempReaders[reader.data().uid] = reader.data().username;
-            });
+        //     readers.forEach(reader => {
+        //         tempReaders[reader.data().uid] = reader.data().username;
+        //     });
 
-            setReaders(tempReaders);
+        //     setReaders(tempReaders);
 
             firebase.getTopics()
                 .then(topics => {
@@ -34,11 +34,11 @@ export default function Topics(props) {
                     })
                     setTopics(newTopics);
                     setIsLoading(false);
-                });
+            });
     
-                firebase.addReader();
-        })
-    }, [isLoading])
+                // firebase.addReader();
+        // })
+    }, [isLoading]);
 
     if(!firebase.getCurrentUsername()) {
         alert("Please login");
@@ -62,10 +62,15 @@ export default function Topics(props) {
         setIsLoading(true);
     }
 
+    function handleSelectTopic(e) {
+        e.preventDefault();
+        console.log("handleSelectTopic ran!");
+    }
+
     return (
         <div className="container-topics">
             <h5>{topics.length} topics selected.</h5>
-            <form onSubmit={e => e.preventDefault() && false}>
+            <form className="form-topics" onSubmit={e => e.preventDefault() && false}>
                 <div className="form-input-text">
                     <input 
                         placeholder="Nancy Pelosi"
@@ -84,8 +89,15 @@ export default function Topics(props) {
             <div className="topics">
             {topics.map((topic, index) => (
                 <div key={index} className="topic">
-                    <p>{topic.data.topic}</p>
-                    {(firebase.auth.currentUser.uid == topic.data.readers) ? (
+                    <a 
+                        href="/selectTopic"
+                        className="button-select"
+                        onClick={e => handleSelectTopic(e, topic.id)}
+                    >
+                        {topic.data.topic}
+                    </a>
+
+                    {(firebase.auth.currentUser.uid === topic.data.readers) ? (
                     <a 
                         href="/deleteTopic"
                         className="button-delete"

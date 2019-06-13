@@ -13,13 +13,38 @@ export default function Navbar(props) {
 
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
+
             <div className="navbar-brand">
-                <h1>
-                    <Link to="/">bitPress</Link>
-                </h1>
+                <Link to="/">
+                    <h1><img src="/bitpresslogomain.png" alt="bitPress logo" className="navbar-logo" /></h1>
+                </Link>
             </div>
 
-            <div className="navbar-links">
+            <div className="navbar-news mobile-hidden">
+                <a href="https://www.cnn.com/2019/06/10/politics/donald-trump-cnbc-tariffs-china-mexico/index.html" className="news-link">
+                    "The 27 most dubious lines from Donald ..." >>
+                </a>
+            </div>
+
+            <div className="navbar-search-form">
+                <form onSubmit={e => e.preventDefault() && false}>
+                    <div className="form-input-text">
+                        <input 
+                            placeholder="Oat Milk"
+                            type="text"
+                            value=""
+                            aria-label="topic"
+                            onChange={e => e.preventDefault()}
+                        />
+
+                        <button type="submit" className="button navbar-search-button" onClick={e => e.preventDefault}>
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div className="navbar-links mobile-hidden">
                 {!firebase.getCurrentUsername() ? (
                     <div className="navbar-buttons">
                         <Link className="button primary" to="/register">Sign Up</Link>
