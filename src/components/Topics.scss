@@ -14,10 +14,15 @@
 
 .topic {
     background-color: #8b3434;
-    padding: 5px;
-    border-radius: 3px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    margin: 2px;
 
-    a {
+    a.follow {
         margin: 0;
+    }
+
+    &:hover {
+        background-color: #792c2c;
     }
 }

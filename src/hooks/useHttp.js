@@ -12,20 +12,20 @@ export default function useHttp(url) {
     useEffect(() => {
         setIsLoading(true);
 
-        let newData = fetch(url)
-            .then((response) => {
-                const newData = response.json();
-                console.log(newData);
-                setIsLoading(false);
-            })
+        fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(response => response.json())
+            .then(json => setFetchedData(json))
             .catch(error => {
                 console.log(error);
-                setIsLoading(false);
-            })
-
-        setFetchedData(newData);
+      });
+        
     }, []);
 
-    return fetchedData;
+    if(fetchedData !== null){
+        return fetchedData;
+    } else {
+        return isLoading;
+    }
+
 };
 

@@ -64,7 +64,7 @@ export default function Topics(props) {
 
     function handleSelectTopic(e) {
         e.preventDefault();
-        console.log("handleSelectTopic ran!");
+        console.log("handleSelectTopic ran!");  
     }
 
     return (
@@ -90,14 +90,14 @@ export default function Topics(props) {
             {topics.map((topic, index) => (
                 <div key={index} className="topic">
                     <a 
-                        href="/selectTopic"
-                        className="button-select"
+                        href={`/followTopic/${topic.id}`}
+                        className="button-follow"
                         onClick={e => handleSelectTopic(e, topic.id)}
                     >
                         {topic.data.topic}
                     </a>
 
-                    {(firebase.auth.currentUser.uid === topic.data.readers) ? (
+                    {/* {(firebase.auth.currentUser.uid === topic.data.readers) ? (
                     <a 
                         href="/deleteTopic"
                         className="button-delete"
@@ -106,7 +106,7 @@ export default function Topics(props) {
                         X
                     </a>
                     ) : ""
-                    }
+                    } */}
                     <div>
                         <p>{console.log(readers.length)}</p>
                     </div>

@@ -5,24 +5,27 @@ import useHttp from '../hooks/useHttp';
 import './Card.scss';
 
 export default function Card() {
-  console.log('Card loaded');
 
   const [isLoading, setIsLoading] = useState(false);
-  const [newFetchedData, setNewFetchedData] = useState([]);
-  const fetchedData = useHttp('https://newsapi.org/v2/everything?q=bitcoin&$pageSize=5&from=2019-05-12&sortBy=publishedAt&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5');
+  const [fetchedData, setFetchedData] = useState([]);
 
-  // useEffect(() => {
-  //   setNewFetchedData(fetchedData);
-  // }, [])
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(json => setFetchedData(json))
+      .catch(error => {
+          console.log(error);
+      });
+  }, []);
 
-  return !fetchedData ? 
-    <div>Working...</div> : (
-      <div className='card'>
-        <img src={fetchedData.urlToImage} alt='' />
-        <h3 className='card-title'>{fetchedData.cardTitle}</h3>
-        <p className='card-author'>"item.author"</p>
-        <p className='card-date'>"item.date"</p>
-        <p>"item.text"</p>
+  return ( 
+    <div className="card">
+      {fetchedData.map((item, index) => (
+      <div key={index} className='card'>
+        <img src="" alt="" />
+        <h3 className='card-title'>{item.title}</h3>
       </div>
-    )
+      ))}
+    </div>
+  );
 };

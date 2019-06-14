@@ -3,11 +3,11 @@ import React from 'react';
 import Navbar from './Navbar';
 import TopicsBar from './TopicsBar';
 import Feed from './Feed';
+import Card from './Card';
 
 import './Dashboard.scss';
 
 export default function Dashboard(props) {
-    console.log('Dashboard loaded');
 
     return (
         <div>
@@ -15,10 +15,10 @@ export default function Dashboard(props) {
 
             <div className="container-dashboard">
                 <TopicsBar />
-            </div>
 
-            <div className="container-feed">
-                <Feed />
+                <div className="container-feed">
+                    <Card />
+                </div>
             </div>
         </div>
     ); 

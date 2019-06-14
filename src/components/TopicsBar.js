@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../firebase';
 
+import './TopicsBar.scss';
+
 const TopicsBar = (props) => {
 
     const [topics, setTopics] = useState([]);
@@ -26,10 +28,11 @@ const TopicsBar = (props) => {
 
     return (
         <div className="row-topics">
+            <p>Trending:</p>
             {topics.map((topic, index) => (
                 <div key={index} className="row-topic">
                     <a 
-                        href="/topic/:id"
+                        href={`/topic/${topic.id}`}
                         className="button-topic"
                         onClick={(e => e.preventDefault())}
                     >

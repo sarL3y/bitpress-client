@@ -20,7 +20,7 @@ export default function App() {
             .then(val => {
                 setFirebaseInitialized(val);
             });
-    });
+    },[]);
 
     return firebaseInitialized !== false ? (
         <section className="App">

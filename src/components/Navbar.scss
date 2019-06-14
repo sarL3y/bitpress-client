@@ -36,9 +36,13 @@ nav.navbar {
     flex: 2;
     display: flex;
     align-items: center;
-    font-size: 18px;
+    font-size: calc(2px + 2vmin);
     overflow-x: hidden;
     word-wrap: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .navbar-search-form {
@@ -59,25 +63,25 @@ nav.navbar {
 }
 
 .navbar-buttons > a {
-    padding: 10px 20px 10px 20px;
-    font-size: 18px;
+    padding: 7px 15px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 5px;
     background-color: #8b3434;
     margin-right: 10px;
 
     &:first-child {
-        padding: 14px 25px 14px 25px;
+        padding: 9px 18px;
         margin-right: 10px;
         margin-left: 20px;
     }
 
     &:last-child {
-        margin-right: 40px;
+        margin-right: 10px;
     }
 
     &:hover {
-        background-color: #833030;
+        background-color: #792c2c;
     }
 }
 

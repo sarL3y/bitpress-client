@@ -1,0 +1,19 @@
+.row-topics {
+    display: flex;
+    background-color: #a03232;
+    color: #ffffff;
+    font-weight: bold;
+    max-width: 100vw;
+    padding: 15px;
+    overflow: scroll;
+    font-size: 16px;
+}
+
+.row-topic {
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    margin: auto 12px;
+    font-size: 14px;
+    white-space: nowrap;
+}

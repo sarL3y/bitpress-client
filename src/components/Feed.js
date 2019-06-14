@@ -1,11 +1,11 @@
-import React from 'react';
+// import React from 'react';
 
-import Card from './Card';
+// import Card from './Card';
 
-export default function Feed() {
-    console.log('Feed loaded');
+// export default function Feed() {
+//     console.log('Feed loaded');
 
-    return (
-        <Card />
-    );
-};
+//     return (
+//         <Card />
+//     );
+// };
