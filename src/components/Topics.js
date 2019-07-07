@@ -8,36 +8,51 @@ export default function Topics(props) {
 
     const [topics, setTopics] = useState([]);
     const [topic, setTopic] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const [readers, setReaders] = useState({});
+    const [follows, setFollows] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     
     useEffect(() => {
 
-        // let tempReaders = {};
+        let tempReaders = {};
 
-        // firebase.getReaders().then(readers => {
-            
-        //     readers.forEach(reader => {
-        //         tempReaders[reader.data().uid] = reader.data().username;
-        //     });
+        firebase.getReaders()
+            .then(readers => {
+                readers.forEach(reader => {
+                    tempReaders[reader.data().uid] = reader.data().username;
+                });
 
-        //     setReaders(tempReaders);
+                setReaders(tempReaders);
 
-            firebase.getTopics()
-                .then(topics => {
-                    let newTopics = [];
-                    topics.forEach(topic => {
-                        newTopics.push({
-                            id: topic.id,
-                            data: topic.data().topic
+                firebase.addNewReader();
+
+                firebase.getTopics()
+                    .then(topics => {
+                        let newTopics = [];
+
+                        topics.forEach(topic => {
+                            newTopics.push({
+                                id: topic.id,
+                                data: topic.data().topic,
+                                readers: {...readers}
+                            });
                         });
-                    })
-                    setTopics(newTopics);
-                    setIsLoading(false);
+
+                        setTopics(newTopics);
+                    });
+
+                firebase.getUserFollows()
+                    .then(follows => {
+                        let newFollows = [];
+
+                        follows.forEach(follow => {
+                            newFollows.push(follow);
+                        });
+
+                        setFollows(newFollows);
+                    });
             });
-    
-                // firebase.addReader();
-        // })
+
     }, [isLoading]);
 
     if(!firebase.getCurrentUsername()) {
@@ -48,28 +63,30 @@ export default function Topics(props) {
 
     async function addTopic() {
         try {
-            await firebase.addTopic({ topic, readers: firebase.auth.currentUser.uid });
+            await firebase.addTopic({ topic, owner: firebase.auth.currentUser.uid });
             setTopic("");
-            setIsLoading(true);
+            
+            setIsLoading(!isLoading);
         } catch(error) {
             alert(error.message);
         }
     }
 
-    async function deleteTopic(e, id) {
+    async function toggleFollowTopic(e, followingBoolean, topic) {
         e.preventDefault();
-        await firebase.deleteTopic(id);
-        setIsLoading(true);
+
+        if(followingBoolean) {
+            await firebase.addFollow(topic);
+            setIsLoading(!isLoading);
+        } else {
+            await firebase.unFollow(topic);
+            setIsLoading(!isLoading);
+        }
     }
 
-    function handleSelectTopic(e) {
-        e.preventDefault();
-        console.log("handleSelectTopic ran!");  
-    }
-
-    return (
+    return ( 
         <div className="container-topics">
-            <h5>{topics.length} topics selected.</h5>
+            <h3>Enter a topic</h3>
             <form className="form-topics" onSubmit={e => e.preventDefault() && false}>
                 <div className="form-input-text">
                     <input 
@@ -87,6 +104,32 @@ export default function Topics(props) {
             </form>
 
             <div className="topics">
+            {topics.map((topic, index) => (  
+                follows.includes(topic.id) ? (
+                    <div key={index} className="unFollowTopic topic">
+                        <a 
+                            href={`/unFollowTopic/${topic.id}`}
+                            className="button-unFollow"
+                            onClick={e => toggleFollowTopic(e, false, topic.id)}
+                        >
+                            {topic.data.topic}
+                        </a>
+                    </div>
+                    ) : (
+                    <div key={index} className="followTopic topic">
+                        <a 
+                            href={`/followTopic/${topic.id}`}
+                            className="button-follow"
+                            onClick={e => toggleFollowTopic(e, true, topic.id)}
+                        >
+                            {topic.data.topic}
+                        </a>
+                    </div>
+                )
+            ))}
+            </div>
+
+            {/* <div className="topics">
             {topics.map((topic, index) => (
                 <div key={index} className="topic">
                     <a 
@@ -97,22 +140,22 @@ export default function Topics(props) {
                         {topic.data.topic}
                     </a>
 
-                    {/* {(firebase.auth.currentUser.uid === topic.data.readers) ? (
-                    <a 
-                        href="/deleteTopic"
-                        className="button-delete"
-                        onClick={e => deleteTopic(e, topic.id)}
-                    >
-                        X
-                    </a>
-                    ) : ""
-                    } */}
+                    {firebase.auth.currentUser.uid === topic.data.readers ? (
+                        <a 
+                            href="/deleteTopic"
+                            className="button-delete"
+                            onClick={e => deleteTopic(e, topic.id)}
+                        >
+                            X
+                        </a>
+                        ) : ""
+                    }
                     <div>
-                        <p>{console.log(readers.length)}</p>
+                        <p></p>
                     </div>
                 </div>
             ))}
-            </div>
+            </div> */}
         </div>
     );
 };

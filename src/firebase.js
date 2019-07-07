@@ -1,4 +1,4 @@
-import app, { firestore } from "firebase/app";
+import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
 
@@ -13,7 +13,7 @@ const firebaseConfig = {
     appId: "1:534107389497:web:f01f89e7a80a5128"
 };
 
-// Initialize Firebase class with methods
+// Initialize Firebase class with async methods
 class Firebase {
     constructor() {
         app.initializeApp(firebaseConfig);
@@ -46,26 +46,42 @@ class Firebase {
         return this.auth.currentUser && this.auth.currentUser.displayName;
     }
 
-    // async getPersonalTopics() {
-    //     const personalTopics = await this.db.collection('topics').get({ userId: this.auth.getCurrentUsername() })
-
-    //     return personalTopics;
-    // }
-
     async getTopics() {
         const topics = await this.db.collection('topics').get()
 
         return topics;
     }
 
+    async getTopic(id) {
+        const topic = await this.db
+            .collection('topics')
+            .doc(id)
+            .get()
+
+        return topic;
+    }
+
     async addTopic(topic) {
         if(!this.auth.currentUser) {
             return alert("Not authorized");
-        }
+        } 
 
-        return this.db.collection('topics').add({
-            topic
+        const topics = await this.db
+            .collection('topics')
+            .where('topic', "==", topic)
+            .get();
+        
+        let count = 0;
+
+        await topics.forEach(topic => {
+            count++;
         });
+
+        await !count ? this.db.collection('topics').add({
+            topic
+        }) : (
+            alert(`Topic "${topic.topic}" already exists!`)
+        );
     }
 
     deleteTopic(id) {
@@ -97,7 +113,7 @@ class Firebase {
             .delete();
     }
 
-    async addReader() {
+    async addNewReader() {
         const reader = await this.db
             .collection('readers')
             .where('uid', "==", this.auth.currentUser.uid)
@@ -120,8 +136,68 @@ class Firebase {
     }
 
     async getReaders() {
-         const readers = await this.db.collection('readers').get();
-         return readers;
+        const readers = await this.db.collection('readers').get();
+        return readers;
+    }
+
+    async getUserFollows() {
+        const topics = [];
+        const userFollows = await this.db
+            .collection('follows')
+            .where('follower', '==', this.auth.currentUser.uid)
+            .get();
+
+        userFollows.forEach(topic => {
+            topics.push(topic.data().topic);
+        });
+
+        return topics;
+    }
+
+    async countFollows(topic) {
+        let count = 0;
+        
+        const follows = await this.db
+            .collection('follows')
+            .where('topic', '==', topic)
+            .get();
+
+        follows.forEach(val => {
+            count++;
+        });
+
+        return count;
+    }
+
+    addFollow(topic) {
+        if(!this.auth.currentUser) {
+            return alert('Please login first.')
+        }
+
+        return this.db
+            .collection('follows')
+            .add({
+                follower: this.auth.currentUser.uid,
+                topic: topic,
+                lookUpKey: `${this.auth.currentUser.uid}_${topic}`,
+                created: new Date()
+            })
+    }
+
+    async unFollow(topic) {
+        const followToDelete = await this.db
+            .collection('follows')
+            .where('lookUpKey', '==', `${this.auth.currentUser.uid}_${topic}`)
+            .get();
+
+        let docId;
+
+        followToDelete.forEach(topic => docId = topic.id);
+
+        return this.db
+            .collection('follows')
+            .doc(docId)
+            .delete();
     }
 }
 

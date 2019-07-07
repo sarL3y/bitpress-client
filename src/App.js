@@ -7,6 +7,7 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
+import Topic from './components/Topic';
 
 import './App.scss';
 
@@ -31,6 +32,7 @@ export default function App() {
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/dashboard" component={Dashboard} />
                     <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/topic/:id" component={Topic} />
                 </Switch>
             </Router>
         </section>

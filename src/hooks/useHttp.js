@@ -10,15 +10,16 @@ export default function useHttp(url) {
     // console.log(queryPreferences);
 
     useEffect(() => {
-        setIsLoading(true);
 
         fetch('https://jsonplaceholder.typicode.com/todos')
-            .then(response => response.json())
-            .then(json => setFetchedData(json))
+            .then((response) => {
+                const newData = response.json();
+                console.log(newData);
+                setFetchedData(newData);
+            })
             .catch(error => {
                 console.log(error);
-      });
-        
+            });
     }, []);
 
     if(fetchedData !== null){

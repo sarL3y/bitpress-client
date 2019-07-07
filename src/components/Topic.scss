@@ -1,15 +1,30 @@
-.container-topics {
+.container-topic {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
 }
 
-.topics {
+.topic {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     width: 600px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    margin: 2px;
+}
+
+.button-unFollow {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 15px;
+}
+
+.button-follow {
+    margin: 0 auto;
+    max-width: 300px;
+    padding: 15px;
 }
 
 .unFollowTopic {
@@ -20,18 +35,4 @@
 .followTopic {
     background-color: lightgrey;
     color: black;
-}
-
-.topic {
-    padding: 6px 10px;
-    border-radius: 5px;
-    margin: 2px;
-
-    a.button-unFollow {
-        margin: 0;
-    }
-
-    a.button-follow {
-        margin: 0;
-    }
 }

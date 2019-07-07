@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import firebase from '../firebase';
 
 import './TopicsBar.scss';
@@ -34,13 +35,12 @@ const TopicsBar = (props) => {
                     <a 
                         href={`/topic/${topic.id}`}
                         className="button-topic"
-                        onClick={(e => e.preventDefault())}
                     >
                         {topic.data.topic}
                     </a>
                 </div>
             ))}
-            </div>
+        </div>
     )
 }
 
