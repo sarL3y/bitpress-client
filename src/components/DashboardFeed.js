@@ -9,6 +9,7 @@ export default function DashboardFeed() {
 
 	useEffect(() => {
 		firebase.addNewReader();
+
 	}, []);
 
 	return isLoading ? <div>Loading...</div> : <div>You did it</div>;

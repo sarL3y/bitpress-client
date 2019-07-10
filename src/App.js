@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import firebase from './firebase';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import Dashboard from './components/Dashboard';
 import HomePage from './components/HomePage';
@@ -23,6 +23,10 @@ export default function App() {
             });
     },[]);
 
+    const noMatch = ({ location }) => (
+        <div>404! "{location.pathname}" not found!</div>
+    )
+
     return firebaseInitialized !== false ? (
         <section className="App">
             <Router>
@@ -33,6 +37,8 @@ export default function App() {
                     <Route exact path="/dashboard" component={Dashboard} />
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/topic/:id" component={Topic} />
+                    <Redirect from="*" to="/" />
+                    <Route component={noMatch} />
                 </Switch>
             </Router>
         </section>

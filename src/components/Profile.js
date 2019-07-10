@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import firebase from '../firebase';
 
@@ -9,6 +9,17 @@ import './Topics.scss';
 import './Sources.scss';
 
 export default function Profile(props) {
+
+    useEffect(() => {
+        firebase.addNewReader();
+    }, []);
+
+    if(!firebase.getCurrentUsername()) {
+        alert("Please login");
+        props.history.replace("/login");
+        return null;
+    }
+
     return (
         <main>
             <Navbar {...props} />
