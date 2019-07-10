@@ -5,6 +5,7 @@ import firebase from '../firebase';
 import './Navbar.scss';
 
 export default function Navbar(props) {
+    
     async function logout(e) {
         e.preventDefault();
         await firebase.logout();

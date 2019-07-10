@@ -44,12 +44,10 @@ export default function Topic(props) {
                         .then(response => {
                             const newResponse = response.json()
                                 .then(newResponse => {
-                                    console.log(newResponse.articles[0].title);
                                     setFetchedData(newResponse);
                                 });
                         })
                         .catch(error => {
-                            console.log(error);
                             setError(error);
                         });
             });
@@ -117,7 +115,6 @@ export default function Topic(props) {
                                 </div>
                             )
                         }
-                        {console.log(fetchedData)}
                         {fetchedData.articles.map((data, index) => (
                             <div key={index} className="article-card">
                                 <p>{data.title}</p>

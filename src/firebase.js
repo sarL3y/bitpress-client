@@ -61,19 +61,35 @@ class Firebase {
         return topic;
     }
 
+    async followAddedTopic(topic) {
+        const topicToFollow = await this.db
+            .collection('topics')
+            .where('topic.topic', '==', `${topic}`)
+            .get();
+
+        let docId;
+
+        topicToFollow.forEach(topic => docId = topic.id);
+
+        return this.db
+            .collection('topics')
+            .doc(docId)
+            .get();
+    }
+
     async addTopic(topic) {
         if(!this.auth.currentUser) {
             return alert("Not authorized");
-        } 
+        }
 
-        const topics = await this.db
+        const topicToMatch = await this.db
             .collection('topics')
             .where('topic', "==", topic)
             .get();
         
         let count = 0;
 
-        await topics.forEach(topic => {
+        await topicToMatch.forEach(topic => {
             count++;
         });
 
@@ -81,7 +97,7 @@ class Firebase {
             topic
         }) : (
             alert(`Topic "${topic.topic}" already exists!`)
-        );
+        )
     }
 
     deleteTopic(id) {
@@ -180,7 +196,7 @@ class Firebase {
                 follower: this.auth.currentUser.uid,
                 topic: topic,
                 lookUpKey: `${this.auth.currentUser.uid}_${topic}`,
-                created: new Date()
+                created: new Date(),
             })
     }
 

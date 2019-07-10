@@ -34,7 +34,6 @@ export default function Topics(props) {
                             newTopics.push({
                                 id: topic.id,
                                 data: topic.data().topic,
-                                readers: {...readers}
                             });
                         });
 
@@ -64,11 +63,16 @@ export default function Topics(props) {
     async function addTopic() {
         try {
             await firebase.addTopic({ topic, owner: firebase.auth.currentUser.uid });
-            setTopic("");
-            
+            await firebase.followAddedTopic(topic)
+                .then(topicToFollow => {
+                    firebase.addFollow(topicToFollow.id);               
+                    });
+            await setTopic("");
+
             setIsLoading(!isLoading);
         } catch(error) {
-            alert(error.message);
+            console.log(error.message);
+            setIsLoading(!isLoading);
         }
     }
 
