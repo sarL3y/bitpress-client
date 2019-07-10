@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Navbar from './Navbar';
 import TopicsBar from './TopicsBar';
 import DashboardFeed from './DashboardFeed';
+import firebase from '../firebase';
 
 import './Dashboard.scss';
 

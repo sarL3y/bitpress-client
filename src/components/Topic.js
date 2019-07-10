@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../firebase';
 import Navbar from './Navbar';
 import TopicsBar from './TopicsBar';
+import useHttp from '../hooks/useHttp';
 
 import './Topic.scss';
 
@@ -16,6 +17,8 @@ export default function Topic(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [followsCount, setFollowsCount] = useState("");
     const [follows, setFollows] = useState([]);
+    const [fetchedData, setFetchedData] = useState(null);
+    const [error, setError] = useState("");
 
     useEffect(() => {
 
@@ -30,7 +33,25 @@ export default function Topic(props) {
 
                 newTopic.id = topic.id;
                 newTopic.data = topic.data().topic;
+                newTopic.title = topic.data().topic.topic;
                 setTopic(newTopic);
+                return newTopic;
+            })
+            .then(newTopic => {
+                let newTopicTitle = newTopic.title;
+
+                fetch(`https://newsapi.org/v2/everything?q=${newTopicTitle}&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
+                        .then(response => {
+                            const newResponse = response.json()
+                                .then(newResponse => {
+                                    console.log(newResponse.articles[0].title);
+                                    setFetchedData(newResponse);
+                                });
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            setError(error);
+                        });
             });
 
         firebase.getUserFollows()
@@ -72,7 +93,7 @@ export default function Topic(props) {
                 <TopicsBar />
             </div>
 
-            {topic ? (
+            {topic && fetchedData ? (
                 <div className="container-topic">
                     <h5>{topic.data.topic}</h5>
                     <p>{followsCount}</p>
@@ -96,7 +117,18 @@ export default function Topic(props) {
                                 </div>
                             )
                         }
+                        {console.log(fetchedData)}
+                        {fetchedData.articles.map((data, index) => (
+                            <div key={index} className="article-card">
+                                <p>{data.title}</p>
+                                <a href={`${data.url}`}>{data.url}</a>
+                                <p>By: {`${data.author}`}</p> 
+                                <p>Date posted: July 7th, 2019</p>
+                                <img src={`${data.url}`} alt={`${"Alt text"}`} />
+                            </div>
+                        ))}
                 </div>
+
             ) : (
                 <div>Loading...</div>
             )

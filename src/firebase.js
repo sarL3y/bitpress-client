@@ -199,7 +199,38 @@ class Firebase {
             .doc(docId)
             .delete();
     }
-}
+
+    getTitles(topics) {
+        let topicTitles = [];
+
+        topics.forEach(topicId => {            
+            this.getTopic(topicId)
+                .then(topic => {
+                    let title = topic.data().topic.topic;
+                    topicTitles.push(title);
+                })
+                .catch(error => {
+                    return error;
+                });
+        });
+
+        console.log(topicTitles);
+        return topicTitles;
+    }
+
+    async getFollowTitles() {
+
+        let newTopics = [];
+        
+        const follows = await this.getUserFollows()
+        
+        await follows.forEach(follow => {
+            newTopics.push(follow);
+        })
+
+        return this.getTitles(newTopics);
+    }; 
+};
 
 export default new Firebase(); 
 

@@ -1,35 +1,58 @@
-import React, { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
-import firebase from '../firebase';
+// import useGetTopicTitles from './useGetTopicTitles';
+// import firebase from '../firebase';
 
-import useGetTopicTitles from './useGetTopicTitles';
+// export default function useHttp(topic) {
 
-export default function useHttp(url) {
+//     const [fetchedData, setFetchedData] = useState([]);
+//     const [error, setError] = useState(null);
+//     const [isLoading, setIsLoading] = useState(false);
+//     const [urls, setUrls] = useState([]);
 
-    const [fetchedData, setFetchedData] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [titles] = useGetTopicTitles([]);
+//     useEffect(() => {
+//         setIsLoading(true);
+//         // getFetchData();
+//         setQueryParamsAndFetch(topic);
 
-    useEffect(() => {
-        setIsLoading(true);
+//         // return () => {
+//         //     getData();
+//         // };
 
+//     }, [topic]);
+
+//     async function setQueryParamsAndFetch(topic) {
+
+//         await fetch(`https://newsapi.org/v2/everything?q=${topic}&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
+//                 .then(response => {
+//                     response.json();
+//                     console.log(response);
+//                     setFetchedData(response);
+//                     setIsLoading(false);
+//                 })
+//                 .catch(error => {
+//                     console.log(error);
+//                     setError(error);
+//                     setIsLoading(false);
+//                 });
+
+//         await console.log(fetchedData);
+//     }
+
+//     // async function getFetchData() {
+//     //         console.log(titles);
+//     //     // try {
+//     //         const response = await fetch(url, titles);
+//     //         const json = await response.json();
+//     //         await setFetchedData(json);
+//     //         await setIsLoading(false);
         
-        const getData = async () => {
-            try {
-                const response = await fetch(url);
-                const json = await response.json();
-                await setFetchedData(json);
-                await setIsLoading(false);
-            } catch (error) {
-                setError(error);
-                console.log(error);
-            }
-        }
+//         // } catch (error) {
+//         //     setError(error);
+//         //     console.log(error);
+//         //     setIsLoading(false);
+//     // };
 
-        getData();
-    }, [url]); 
-    
-    return { fetchedData, error, isLoading };
-};
+//     return { fetchedData, error, isLoading };
+// };
 
