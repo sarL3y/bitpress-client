@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Navbar from './Navbar';
 import TopicsBar from './TopicsBar';
@@ -8,6 +8,12 @@ import firebase from '../firebase';
 import './Dashboard.scss';
 
 export default function Dashboard(props) {
+
+    if(!firebase.getCurrentUsername()) {
+        alert("Please login");
+        props.history.replace("/login");
+        return null;
+    }
 
     return (
         <div>

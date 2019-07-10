@@ -5,10 +5,10 @@ import firebase from '../firebase';
 import './DashboardFeed.scss';
 
 export default function DashboardFeed() {
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading] = useState(false);
 
 	useEffect(() => {
-
+		firebase.addNewReader();
 	}, []);
 
 	return isLoading ? <div>Loading...</div> : <div>You did it</div>;

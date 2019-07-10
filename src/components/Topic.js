@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../firebase';
 import Navbar from './Navbar';
 import TopicsBar from './TopicsBar';
-import useHttp from '../hooks/useHttp';
 
 import './Topic.scss';
 
@@ -42,7 +41,7 @@ export default function Topic(props) {
 
                 fetch(`https://newsapi.org/v2/everything?q=${newTopicTitle}&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
                         .then(response => {
-                            const newResponse = response.json()
+                            response.json()
                                 .then(newResponse => {
                                     setFetchedData(newResponse);
                                 });
@@ -63,7 +62,7 @@ export default function Topic(props) {
                 setFollows(newFollows);
             });
 
-    }, [isLoading]);
+    }, [isLoading, props.match.params.id]);
 
     if(!firebase.getCurrentUsername()) {
         alert("Please login");
@@ -83,53 +82,53 @@ export default function Topic(props) {
         }
     }
 
-    return (
-        <div>
-            <Navbar {...props} />
+    return error ? 
+        <div>{error.message}</div> : (
+            <div>
+                <Navbar {...props} />
 
-            <div className="container-dashboard">
-                <TopicsBar />
-            </div>
-
-            {topic && fetchedData ? (
-                <div className="container-topic">
-                    <h5>{topic.data.topic}</h5>
-                    <p>{followsCount}</p>
-                        {follows.includes(topic.id) ? (
-                            <div className="button-unFollow unFollowTopic">
-                                <a 
-                                    href={`/unFollowTopic/${topic.id}`}
-                                    onClick={e => toggleFollowTopic(e, false, topic.id)}
-                                >
-                                    Following {topic.data.topic}
-                                </a>
-                            </div>
-                            ) : (
-                                <div className="button-follow followTopic">
-                                    <a 
-                                        href={`/followTopic/${topic.id}`}
-                                        onClick={e => toggleFollowTopic(e, true, topic.id)}
-                                    >
-                                        Follow {topic.data.topic}
-                                    </a>
-                                </div>
-                            )
-                        }
-                        {fetchedData.articles.map((data, index) => (
-                            <div key={index} className="article-card">
-                                <p>{data.title}</p>
-                                <a href={`${data.url}`}>{data.url}</a>
-                                <p>By: {`${data.author}`}</p> 
-                                <p>Date posted: July 7th, 2019</p>
-                                <img src={`${data.url}`} alt={`${"Alt text"}`} />
-                            </div>
-                        ))}
+                <div className="container-dashboard">
+                    <TopicsBar />
                 </div>
 
-            ) : (
-                <div>Loading...</div>
-            )
-            }
-        </div>
+                {topic && fetchedData ? (
+                    <div className="container-topic">
+                        <h5>{topic.data.topic}</h5>
+                        <p>{followsCount}</p>
+                            {follows.includes(topic.id) ? (
+                                <div className="button-unFollow unFollowTopic">
+                                    <a 
+                                        href={`/unFollowTopic/${topic.id}`}
+                                        onClick={e => toggleFollowTopic(e, false, topic.id)}
+                                    >
+                                        Following {topic.data.topic}
+                                    </a>
+                                </div>
+                                ) : (
+                                    <div className="button-follow followTopic">
+                                        <a 
+                                            href={`/followTopic/${topic.id}`}
+                                            onClick={e => toggleFollowTopic(e, true, topic.id)}
+                                        >
+                                            Follow {topic.data.topic}
+                                        </a>
+                                    </div>
+                                )
+                            }
+                            {fetchedData.articles.map((data, index) => (
+                                <div key={index} className="article-card">
+                                    <p>{data.title}</p>
+                                    <a href={`${data.url}`}>{data.url}</a>
+                                    <p>By: {`${data.author}`}</p> 
+                                    <p>Date posted: July 7th, 2019</p>
+                                    <img src={`${data.url}`} alt={`${"Alt text"}`} />
+                                </div>
+                            ))}
+                    </div>
+
+                ) : (
+                    <div>Loading...</div>
+                )}
+            </div>
     );
 };

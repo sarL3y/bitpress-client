@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import firebase from '../firebase';
 
 import Topics from './Topics';
-import Sources from './Sources';
 
 import './Profile.scss';
 import './Topics.scss';
@@ -27,8 +26,6 @@ export default function Profile(props) {
                     <h3>Preferences</h3>
                     <h4>Topics</h4>
                     <Topics />
-                    <h4>Sources</h4>
-                    <Sources />
                 </div>
             </div>
         </main>

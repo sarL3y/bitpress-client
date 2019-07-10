@@ -8,50 +8,37 @@ export default function Topics(props) {
 
     const [topics, setTopics] = useState([]);
     const [topic, setTopic] = useState("");
-    const [readers, setReaders] = useState({});
     const [follows, setFollows] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     
     useEffect(() => {
 
-        let tempReaders = {};
+        firebase.addNewReader();
 
-        firebase.getReaders()
-            .then(readers => {
-                readers.forEach(reader => {
-                    tempReaders[reader.data().uid] = reader.data().username;
+        firebase.getTopics()
+            .then(topics => {
+                let newTopics = [];
+
+                topics.forEach(topic => {
+                    newTopics.push({
+                        id: topic.id,
+                        data: topic.data().topic,
+                    });
                 });
 
-                setReaders(tempReaders);
-
-                firebase.addNewReader();
-
-                firebase.getTopics()
-                    .then(topics => {
-                        let newTopics = [];
-
-                        topics.forEach(topic => {
-                            newTopics.push({
-                                id: topic.id,
-                                data: topic.data().topic,
-                            });
-                        });
-
-                        setTopics(newTopics);
-                    });
-
-                firebase.getUserFollows()
-                    .then(follows => {
-                        let newFollows = [];
-
-                        follows.forEach(follow => {
-                            newFollows.push(follow);
-                        });
-
-                        setFollows(newFollows);
-                    });
+                setTopics(newTopics);
             });
 
+        firebase.getUserFollows()
+            .then(follows => {
+                let newFollows = [];
+
+                follows.forEach(follow => {
+                    newFollows.push(follow);
+                });
+
+                setFollows(newFollows);
+            });
     }, [isLoading]);
 
     if(!firebase.getCurrentUsername()) {
