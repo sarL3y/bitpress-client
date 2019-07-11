@@ -7,6 +7,7 @@ import './TopicsBar.scss';
 export default function TopicsBar() {
 
     const [topics, setTopics] = useState([]);
+    const [follows, setFollows] = useState([]);
     
     useEffect(() => {
 
@@ -23,13 +24,26 @@ export default function TopicsBar() {
 
                 setTopics(newTopics);
             });
+
+        if (firebase.auth.currentUser) {
+            firebase.getUserFollows()
+                .then(follows => {
+                    let newFollows = [];
+
+                    follows.forEach(follow => {
+                        newFollows.push(follow);
+                    });
+
+                    setFollows(newFollows);
+                })
+        }
+        
     }, []);
 
-    return !topics ? 
-        <div>Loading...</div> : (
-            <div className="row-topics">
-                <p>Following:</p>
-                {topics.map((topic, index) => (
+    const following = () => {
+        return topics && follows ? (
+            topics.map((topic, index) => (
+                follows.includes(topic.id) ? (
                     <div key={index} className="row-topic">
                         <a 
                             href={`/topic/${topic.id}`}
@@ -38,7 +52,36 @@ export default function TopicsBar() {
                             {topic.data.topic}
                         </a>
                     </div>
-                ))}
-            </div>
-    );
+                ) : (
+                    false
+                )
+            ))
+        ) : (
+            <div>Loading...</div>
+        )
+    };
+
+    const trending = () => {
+        return topics && follows ? (
+            topics.map((topic, index) => (
+                follows.includes(topic.id) ? (
+                    false
+                ) : (
+                    <div key={index} className="row-topic">
+                        <a 
+                            href={`/topic/${topic.id}`}
+                            className="button-topic"
+                        >
+                            {topic.data.topic}
+                        </a>
+                    </div>
+                )
+            ))
+        ) : (
+            <div>Loading...</div>
+        );
+    };
+
+    return [following(), trending()];
+    
 };

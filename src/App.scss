@@ -2,6 +2,8 @@
   text-align: center;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
+  display: flex;
+  flex-direction: column;
 }
 
 .App-link {
@@ -12,16 +14,28 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-@each $name in 'profile' 'dashboard' 'login' 'register' 'homepage' 'personal-info' 'preferences' 'feed' 'topics' 'sources' 'header' {
+@each $name in 'profile' 'dashboard' 'login' 'register' 'homepage' 'personal-info' 'preferences' 'feed' 'topics' 'topic' 'sources' 'header' {
   .container-#{$name} {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 }
 
-@each $name in 'profile' 'dashboard' 'login' 'register' 'homepage' 'header' 'preferences' {
+@each $name in 'profile' 'dashboard' 'login' 'register' 'topic' 'homepage' 'header' 'preferences' {
   .container-#{$name} {
-    padding-top: 11vh;
+    padding-top: 8vh;
   }
+}
+
+.row-topics {
+  display: flex;
+  background-color: #a03232;
+  color: #ffffff;
+  width: 100vw;
+  padding: 15px;
+  overflow: scroll;
+  font-size: 16px;
+  font-weight: bold;
 }

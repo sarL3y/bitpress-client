@@ -20,8 +20,10 @@ export default function Dashboard(props) {
             <Navbar {...props} />
 
             <div className="container-dashboard">
-                <TopicsBar />
-
+                <div className="row-topics">
+                    <TopicsBar />
+                </div>
+                
                 <div className="container-feed">
                     <DashboardFeed />
                 </div>

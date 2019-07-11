@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 // Topic page will call the API in the useEffect
 // Topic page will have forward and back buttons to navigate to the topic page url
-// OR Topic page will have the rest of the topics in a list
+// OR Topic page will have the rest of the topics in a list (solved by TopicsBar already)
 
 import firebase from '../firebase';
 import Navbar from './Navbar';
 import TopicsBar from './TopicsBar';
+import LoadingIcon from './LoadingIcon';
 
 import './Topic.scss';
 
@@ -21,10 +22,23 @@ export default function Topic(props) {
 
     useEffect(() => {
 
-        firebase.countFollows(props.match.params.id)
-            .then(count => {
-                setFollowsCount(count);
+        if (firebase.auth.currentUser) {
+            firebase.countFollows(props.match.params.id)
+                .then(count => {
+                    setFollowsCount(count);
+                });
+
+            firebase.getUserFollows()
+                .then(follows => {
+                    let newFollows = [];
+
+                    follows.forEach(follow => {
+                        newFollows.push(follow);
+                    });
+
+                setFollows(newFollows);
             });
+        }
 
         firebase.getTopic(props.match.params.id)
             .then(topic => {
@@ -51,24 +65,7 @@ export default function Topic(props) {
                         });
             });
 
-        firebase.getUserFollows()
-            .then(follows => {
-                let newFollows = [];
-
-                follows.forEach(follow => {
-                    newFollows.push(follow);
-                });
-
-                setFollows(newFollows);
-            });
-
     }, [isLoading, props.match.params.id]);
-
-    if(!firebase.getCurrentUsername()) {
-        alert("Please login");
-        props.history.replace("/login");
-        return null;
-    }
 
     async function toggleFollowTopic(e, followingBoolean, topic) {
         e.preventDefault();
@@ -86,13 +83,14 @@ export default function Topic(props) {
         <div>{error.message}</div> : (
             <div>
                 <Navbar {...props} />
+                <div className="container-topic">
 
-                <div className="container-dashboard">
+                <div className="row-topics">
                     <TopicsBar />
                 </div>
-
+                
                 {topic && fetchedData ? (
-                    <div className="container-topic">
+                    <div>
                         <h5>{topic.data.topic}</h5>
                         <p>{followsCount}</p>
                             {follows.includes(topic.id) ? (
@@ -127,8 +125,11 @@ export default function Topic(props) {
                     </div>
 
                 ) : (
-                    <div>Loading...</div>
+                    <div className="container-topic">
+                        <LoadingIcon />
+                    </div>
                 )}
             </div>
+        </div>
     );
 };

@@ -47,7 +47,7 @@ class Firebase {
     }
 
     async getTopics() {
-        const topics = await this.db.collection('topics').get()
+        const topics = await this.db.collection('topics').get();
 
         return topics;
     }
@@ -59,22 +59,6 @@ class Firebase {
             .get()
 
         return topic;
-    }
-
-    async followAddedTopic(topic) {
-        const topicToFollow = await this.db
-            .collection('topics')
-            .where('topic.topic', '==', `${topic}`)
-            .get();
-
-        let docId;
-
-        topicToFollow.forEach(topic => docId = topic.id);
-
-        return this.db
-            .collection('topics')
-            .doc(docId)
-            .get();
     }
 
     async addTopic(topic) {
@@ -100,7 +84,29 @@ class Firebase {
         )
     }
 
+    async followAddedTopic(topic) {
+        if(!this.auth.currentUser) {
+            return alert("Not authorized");
+        }
+        const topicToFollow = await this.db
+            .collection('topics')
+            .where('topic.topic', '==', `${topic}`)
+            .get();
+
+        let docId;
+
+        topicToFollow.forEach(topic => docId = topic.id);
+
+        return this.db
+            .collection('topics')
+            .doc(docId)
+            .get();
+    }
+
     deleteTopic(id) {
+        if(!this.auth.currentUser) {
+            return alert("Not authorized");
+        }
         return this.db
             .collection('topics')
             .doc(id)
@@ -123,6 +129,9 @@ class Firebase {
     }
 
     deleteSource(id) {
+        if(!this.auth.currentUser) {
+            return alert("Not authorized");
+        }
         return this.db
             .collection('sources')
             .doc(id)
@@ -170,6 +179,25 @@ class Firebase {
         return topics;
     }
 
+    async getAllFollows() {
+        const allFollows = await this.db
+            .collection('follows')
+            .get();
+
+        const followArray = [];
+
+        allFollows.forEach(async follow => {
+            followArray.push({
+                topic: follow.data().topic, 
+                follows: await this.countFollows(follow.data().topic)
+            })
+        })
+
+        console.log(followArray);
+
+        return followArray;
+    }
+
     async countFollows(topic) {
         let count = 0;
         
@@ -187,7 +215,7 @@ class Firebase {
 
     addFollow(topic) {
         if(!this.auth.currentUser) {
-            return alert('Please login first.')
+            return alert('Please login or sign up first.')
         }
 
         return this.db
@@ -201,6 +229,9 @@ class Firebase {
     }
 
     async unFollow(topic) {
+        if(!this.auth.currentUser) {
+            return alert("Not authorized");
+        }
         const followToDelete = await this.db
             .collection('follows')
             .where('lookUpKey', '==', `${this.auth.currentUser.uid}_${topic}`)

@@ -10,7 +10,6 @@ const Register = props => {
     const [name, setName] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
-    // const [isLoading, setIsLoading] = useState(false);
 
     async function onRegister() {
         try {

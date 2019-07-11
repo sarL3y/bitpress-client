@@ -26,6 +26,11 @@ export default function Topics(props) {
                     });
                 });
 
+                newTopics.sort((a, b) => {
+
+                    return a.data.topic - b.data.topic;
+                });
+
                 setTopics(newTopics);
             });
 
@@ -39,6 +44,7 @@ export default function Topics(props) {
 
                 setFollows(newFollows);
             });
+
     }, [isLoading]);
 
     if(!firebase.getCurrentUsername()) {
@@ -119,34 +125,6 @@ export default function Topics(props) {
                 )
             ))}
             </div>
-
-            {/* <div className="topics">
-            {topics.map((topic, index) => (
-                <div key={index} className="topic">
-                    <a 
-                        href={`/followTopic/${topic.id}`}
-                        className="button-follow"
-                        onClick={e => handleSelectTopic(e, topic.id)}
-                    >
-                        {topic.data.topic}
-                    </a>
-
-                    {firebase.auth.currentUser.uid === topic.data.readers ? (
-                        <a 
-                            href="/deleteTopic"
-                            className="button-delete"
-                            onClick={e => deleteTopic(e, topic.id)}
-                        >
-                            X
-                        </a>
-                        ) : ""
-                    }
-                    <div>
-                        <p></p>
-                    </div>
-                </div>
-            ))}
-            </div> */}
         </div>
     );
 };

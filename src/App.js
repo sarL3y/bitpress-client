@@ -8,13 +8,13 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import Topic from './components/Topic';
+import LoadingIcon from './components/LoadingIcon';
 
 import './App.scss';
 
 export default function App() {
 
     const [firebaseInitialized, setFirebaseInitialized] = useState(false);
-    // const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         firebase.isInitialized()
@@ -46,7 +46,7 @@ export default function App() {
         <main className="App">
             <header className="container-header">
                 <h1>bitPress</h1>
-                <p>Loading...</p>
+                <LoadingIcon />
             </header>
         </main>
     );

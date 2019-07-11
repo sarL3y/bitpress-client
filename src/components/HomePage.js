@@ -10,9 +10,13 @@ export default function HomePage(props) {
         <main>
             <Navbar {...props} />
             <div className="container-homepage">
+                <div className="row-topics">
                 <TopicsBar />
+                </div>
+
                 <h2>HomePage for BitPress.</h2>
                 <p>Do some signup stuff.</p>
+
             </div>
         </main>
     );
