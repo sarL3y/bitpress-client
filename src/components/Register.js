@@ -7,9 +7,9 @@ import './Register.scss';
 
 const Register = props => {
 
-    const [name, setName] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     async function onRegister() {
         try {
@@ -21,12 +21,16 @@ const Register = props => {
     }
     
     return (
-        <main>
+        <main role="main">
             <Navbar {...props} />
 
             <div className="container-register">
+                <div className="page-headers">
+                    <h2>BitPress Register Page</h2>
+                    <p>Do some Register stuff.</p>
+                </div>
+
                 <div className="form-register">
-                    <h2>BitPress Register</h2>
                     <form onSubmit={e => e.preventDefault() && false}>
                         <div className="form-input-text">
                             <input 

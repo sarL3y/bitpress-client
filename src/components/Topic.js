@@ -22,12 +22,12 @@ export default function Topic(props) {
 
     useEffect(() => {
 
-        if (firebase.auth.currentUser) {
-            firebase.countFollows(props.match.params.id)
-                .then(count => {
-                    setFollowsCount(count);
-                });
+        firebase.countFollows(props.match.params.id)
+            .then(count => {
+                setFollowsCount(count);
+            });
 
+        if (firebase.auth.currentUser) {
             firebase.getUserFollows()
                 .then(follows => {
                     let newFollows = [];
@@ -53,7 +53,7 @@ export default function Topic(props) {
             .then(newTopic => {
                 let newTopicTitle = newTopic.title;
 
-                fetch(`https://newsapi.org/v2/everything?q=${newTopicTitle}&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
+                fetch(`https://newsapi.org/v2/top-headlines?q=${newTopicTitle}&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
                         .then(response => {
                             response.json()
                                 .then(newResponse => {
@@ -81,25 +81,29 @@ export default function Topic(props) {
 
     return error ? 
         <div>{error.message}</div> : (
-            <div>
+            <main role="main">
                 <Navbar {...props} />
                 <div className="container-topic">
+                    <div className="row-topics">
+                        <TopicsBar />
+                    </div>
 
-                <div className="row-topics">
-                    <TopicsBar />
+                    <div className="page-headers">
+                    <h2>BitPress Topic Page</h2>
+                    <p>Do some topic stuff.</p>
                 </div>
                 
                 {topic && fetchedData ? (
                     <div>
-                        <h5>{topic.data.topic}</h5>
-                        <p>{followsCount}</p>
+                        <h3>{topic.data.topic}</h3>
+                        <p>{followsCount} Following</p>
                             {follows.includes(topic.id) ? (
                                 <div className="button-unFollow unFollowTopic">
                                     <a 
                                         href={`/unFollowTopic/${topic.id}`}
                                         onClick={e => toggleFollowTopic(e, false, topic.id)}
                                     >
-                                        Following {topic.data.topic}
+                                        Following
                                     </a>
                                 </div>
                                 ) : (
@@ -108,7 +112,7 @@ export default function Topic(props) {
                                             href={`/followTopic/${topic.id}`}
                                             onClick={e => toggleFollowTopic(e, true, topic.id)}
                                         >
-                                            Follow {topic.data.topic}
+                                            Follow
                                         </a>
                                     </div>
                                 )
@@ -116,11 +120,12 @@ export default function Topic(props) {
                             {fetchedData.articles.map((data, index) => (
                                 <div key={index} className="article-card">
                                     <p>{data.title}</p>
-                                    <a href={`${data.url}`}>{data.url}</a>
+                                    <a href={`${data.url}`} rel="noreferrer">{data.url}</a>
                                     <p>By: {`${data.author}`}</p> 
                                     <p>Date posted: July 7th, 2019</p>
                                     <img src={`${data.url}`} alt={`${"Alt text"}`} />
                                 </div>
+
                             ))}
                     </div>
 
@@ -130,6 +135,6 @@ export default function Topic(props) {
                     </div>
                 )}
             </div>
-        </div>
+        </main>
     );
 };

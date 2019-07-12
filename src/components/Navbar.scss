@@ -1,13 +1,15 @@
+@import "src/index.scss";
+
 $button-color-primary: #385b66;
 
 nav.navbar {
     position: fixed;
     display: flex;
-    background-color: #8e1e1e;
-    max-height: 125px;
+    background-color: $background-color-light;
+    height: 60px;
     width: 100vw;
     padding: 5px;
-    box-shadow: 0 1px 8px -2px rgba(102, 30, 30, 0.568);
+    box-shadow: 0 1px 8px -2px rgba(100, 100, 100, 0.568);
 }
 
 .navbar-brand {
@@ -15,20 +17,11 @@ nav.navbar {
     flex: 1;
     margin: auto;
     font-family: 'IBMPlexSerif-Medium', serif;
-    text-shadow: 1px 1px 1px rgba(70, 70, 70, 0.543);
+    text-shadow: 1px 1px 1px rgba(100, 100, 100, 0.568);
 }
 
 .navbar-logo {
-    height: auto;
-    width: 175px;
-}
-
-.navbar-links {
-    order: 4;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-height: 48px;
 }
 
 .navbar-news {
@@ -36,7 +29,7 @@ nav.navbar {
     flex: 2;
     display: flex;
     align-items: center;
-    font-size: calc(2px + 2vmin);
+    font-size: calc(8px + 1vmin);
     overflow-x: hidden;
     word-wrap: none;
 
@@ -50,16 +43,25 @@ nav.navbar {
     flex: 1;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 
     input {
         padding: 5px;
         font-size: 16px;
-        min-width: 200px;
+        min-width: 250px;
     }
 
     button {
         display: none;
     }
+}
+
+.navbar-links {
+    order: 4;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar-buttons > a {
@@ -69,7 +71,7 @@ nav.navbar {
     font-size: 15px;
     font-weight: bold;
     border-radius: 5px;
-    background-color: #8b3434;
+    background-color: $background-color-light;
     margin-right: 10px;
 
     &:first-child {
@@ -83,13 +85,13 @@ nav.navbar {
     }
 
     &:hover {
-        background-color: #792c2c;
+
     }
 }
 
 a {
     text-decoration: none;
-    color: #ffffff;
+    color: $font-color-dark;
 }
 
 a.primary {
@@ -104,5 +106,44 @@ a.primary {
 @media (max-width: 600px) {
     .mobile-hidden {
         display: none;
+    }
+
+    .navbar-buttons > a {
+        justify-content: flex-end;
+        align-items: flex-end;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        background-color: $background-color-light;
+    
+        &:first-child {
+            padding: 5px 10px;
+            margin-right: 1px;
+            margin-left: 10px;
+        }
+    
+        &:last-child {
+            margin-left: 0px;
+            margin-right: 5px;
+        }
+    
+        &:hover {
+            background-color: lightgrey;
+        }
+    }
+
+    .navbar-links {
+        order: 4;
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        max-height: 30px;
+        justify-self: center;
     }
 }

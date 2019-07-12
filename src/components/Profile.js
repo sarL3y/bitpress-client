@@ -16,17 +16,20 @@ export default function Profile(props) {
 
     if(!firebase.getCurrentUsername()) {
         alert("Please login");
+        console.log("PROFILE DID IT");
         props.history.replace("/login");
         return null;
     }
 
     return (
-        <main>
+        <main role="main">
             <Navbar {...props} />
 
             <div className="container-profile">
-                <h2>Profile</h2>
-                <p>Lorem Ipsum</p>
+                <div className="page-headers">
+                    <h2>Profile</h2>
+                    <p>Lorem Ipsum</p>
+                </div>
 
                 <div className="container-personal-info">
                     <h3>Personal Info</h3>

@@ -1,3 +1,9 @@
+$button-color-primary: #385b66;
+$font-color-dark: #414141;
+$font-color-light: white;
+$background-color-light: #F4F4F4;
+$background-color-body-light: #ebebeb;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,7 +15,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e5e2e2;
+  background-color: $background-color-body-light;
+  color: $font-color-dark;
 }
 
 input,
@@ -41,5 +48,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-$button-color-primary: #385b66;

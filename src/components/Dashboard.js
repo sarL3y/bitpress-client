@@ -6,11 +6,11 @@ import DashboardFeed from './DashboardFeed';
 import firebase from '../firebase';
 
 import './Dashboard.scss';
+import './DashboardFeed.scss';
 
 export default function Dashboard(props) {
 
     if(!firebase.getCurrentUsername()) {
-        alert("Please login");
         props.history.replace("/login");
         return null;
     }
@@ -22,6 +22,11 @@ export default function Dashboard(props) {
             <div className="container-dashboard">
                 <div className="row-topics">
                     <TopicsBar />
+                </div>
+
+                <div className="page-headers">
+                    <h2>BitPress Dashboard</h2>
+                    <p>Do some dashboard stuff.</p>
                 </div>
                 
                 <div className="container-feed">

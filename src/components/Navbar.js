@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import firebase from '../firebase';
 
 import './Navbar.scss';
@@ -17,7 +18,7 @@ export default function Navbar(props) {
 
             <div className="navbar-brand">
                 <Link to="/">
-                    <h1><img src="/bitpresslogomain.png" alt="bitPress logo" className="navbar-logo" /></h1>
+                    <h1><img src="/bitPressIconLeftFront.png" alt="bitPress logo" className="navbar-logo" /></h1>
                 </Link>
             </div>
 
@@ -27,7 +28,8 @@ export default function Navbar(props) {
                 </a>
             </div>
 
-            <div className="navbar-search-form">
+            {!firebase.getCurrentUsername() ? false : (
+                <div className="navbar-search-form mobile-hidden">
                 <form onSubmit={e => e.preventDefault() && false}>
                     <div className="form-input-text">
                         <input 
@@ -44,8 +46,9 @@ export default function Navbar(props) {
                     </div>
                 </form>
             </div>
+            )}
 
-            <div className="navbar-links mobile-hidden">
+            <div className="navbar-links">
                 {!firebase.getCurrentUsername() ? (
                     <div className="navbar-buttons">
                         <Link className="button primary" to="/register">Sign Up</Link>

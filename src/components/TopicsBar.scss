@@ -1,10 +1,12 @@
+@import "src/index.scss";
+
 .row-topics {
     display: flex;
-    background-color: #a03232;
-    color: #ffffff;
+    background-color: white;
+    color: $font-color-dark;
     width: 100vw;
-    padding: 15px;
-    overflow: scroll;
+    padding: 12px;
+    overflow: auto;
     font-size: 16px;
     font-weight: bold;
 }
@@ -12,13 +14,42 @@
 .row-topic {
     display: flex;
     flex-direction: row;
+    background-color: white;
     border-radius: 5px;
     margin: auto 12px;
     font-size: 14px;
     white-space: nowrap;
-    font-weight: normal;
+    font-weight: bold;
 
     &:hover {
         text-decoration: underline;
+    }
+}
+
+@media (max-width: 600px) {
+    .row-topics {
+        display: flex;
+        background-color: white;
+        color: $font-color-dark;
+        width: 100vw;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .row-topic {
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+        border-radius: 5px;
+        margin: auto 10px;
+        font-size: 12px;
+        font-weight: bold;
+        white-space: nowrap;
+        font-weight: normal;
+    
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

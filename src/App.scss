@@ -1,3 +1,5 @@
+@import "src/index.scss";
+
 .App {
   text-align: center;
   min-height: 100vh;
@@ -6,12 +8,12 @@
   flex-direction: column;
 }
 
-.App-link {
-  color: #ffffff;
-}
-
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
+}
+
+.page-headers {
+  margin-top: 10px;
 }
 
 @each $name in 'profile' 'dashboard' 'login' 'register' 'homepage' 'personal-info' 'preferences' 'feed' 'topics' 'topic' 'sources' 'header' {
@@ -29,13 +31,4 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.row-topics {
-  display: flex;
-  background-color: #a03232;
-  color: #ffffff;
-  width: 100vw;
-  padding: 15px;
-  overflow: scroll;
-  font-size: 16px;
-  font-weight: bold;
-}
+

@@ -7,7 +7,9 @@ export default function LoadingIcon() {
     return (
         <div className="container-tinyNews">
             <div className="tinyNews">
-                <div className="tinyNewsTitleBig"></div>
+                <div className="tinyNewsTitleBig">
+                    <img src="/bitPressIconLeftFront.png" alt="bitPress logo" className="navbar-logo" />
+                </div>
                 <div className="tinyNewsTitleSmall"></div>
                     <div className="tinyNewsColumns">
                         <div className="tinyNewsLeft"></div>
@@ -18,6 +20,7 @@ export default function LoadingIcon() {
                         <div className="tinyNewsRight"></div>
                     </div>
             </div>
+            
             <p>Loading...</p>
         </div>
     );

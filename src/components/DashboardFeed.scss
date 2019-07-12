@@ -1,13 +1,39 @@
-.dashboard-card {
+@import "src/index.scss";
+
+.container-topics-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    margin: 10px;
+}
+
+.container-following, .container-trending {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     margin: 20px;
-    padding: 20px;
+    max-width: 800px;
+
+    & > h3 {
+        flex: 1;
+    }
+}
+
+.dashboard-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-grow: 1;
+    background-color: white;
+    max-width: 175px;
+    margin: 2px;
+    padding: 5px;
     border: 1px solid grey;
     border-radius: 5px;
+    font-size: calc(10px + 1vmin);
+    font-weight: bold;
 
     &:nth-child(n) {
-        padding: 20px;
+        padding: 5px;
     }
 }

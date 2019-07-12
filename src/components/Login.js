@@ -24,8 +24,12 @@ const Login = props => {
         <main role="main">
             <Navbar {...props} />
             <div className="container-login">
+                <div className="page-headers">
+                    <h2>BitPress Login Page</h2>
+                    <p>Do some login stuff.</p>
+                </div>
+
                 <div className="form-login">
-                    <h2>BitPress Login</h2>
                     <form onSubmit={e => e.preventDefault() && false}>
                         <div className="form-input-email">
                             <input 

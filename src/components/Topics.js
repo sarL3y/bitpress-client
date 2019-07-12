@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import firebase from '../firebase';
 
+import LoadingIcon from './LoadingIcon';
+
 import './Topics.scss';
 
 export default function Topics(props) {
@@ -26,10 +28,10 @@ export default function Topics(props) {
                     });
                 });
 
-                newTopics.sort((a, b) => {
+                // newTopics.sort((a, b) => {
 
-                    return a.data.topic - b.data.topic;
-                });
+                //     return b.data - a.data;
+                // });
 
                 setTopics(newTopics);
             });
@@ -54,8 +56,9 @@ export default function Topics(props) {
     }
 
     async function addTopic() {
+
         try {
-            await firebase.addTopic({ topic, owner: firebase.auth.currentUser.uid });
+            await firebase.addTopic({ "topic": topic.toUpperCase(), owner: firebase.auth.currentUser.uid });
             await firebase.followAddedTopic(topic)
                 .then(topicToFollow => {
                     firebase.addFollow(topicToFollow.id);               
@@ -65,6 +68,7 @@ export default function Topics(props) {
             setIsLoading(!isLoading);
         } catch(error) {
             console.log(error.message);
+            await setTopic("");
             setIsLoading(!isLoading);
         }
     }
@@ -83,47 +87,69 @@ export default function Topics(props) {
 
     return ( 
         <div className="container-topics">
-            <h3>Enter a topic</h3>
+            <div className="topics-headers">
+                <h4>Enter a topic to start following</h4>
+                <p>Click below to follow or unfollow your topics. When finished, head to the dashboard to view your feed.</p>
+            </div>
+
             <form className="form-topics" onSubmit={e => e.preventDefault() && false}>
                 <div className="form-input-text">
                     <input 
-                        placeholder="Nancy Pelosi"
+                        placeholder="Women's Soccer"
                         type="text"
-                        value={topic}
+                        value={topic.toString()}
                         aria-label="topic"
                         onChange={e => setTopic(e.target.value)}
                     />
 
-                    <button type="submit" onClick={addTopic}>
+                    <button type="submit" className="form-topics-submit" onClick={(topic) => addTopic(topic)}>
                         Add
                     </button>
                 </div>
             </form>
 
             <div className="topics">
-            {topics.map((topic, index) => (  
-                follows.includes(topic.id) ? (
-                    <div key={index} className="unFollowTopic topic">
+            {topics && follows ? (
+                topics.map((topic, index) => (
+                    follows.includes(topic.id) ? (
                         <a 
                             href={`/unFollowTopic/${topic.id}`}
-                            className="button-unFollow"
+                            className=""
                             onClick={e => toggleFollowTopic(e, false, topic.id)}
-                        >
-                            {topic.data.topic}
+                            key={index}
+                            >
+                                <div className="following profile-topic">
+                                    <h4>{topic.data.topic}</h4>
+                                </div>
                         </a>
-                    </div>
                     ) : (
-                    <div key={index} className="followTopic topic">
+                        false
+                    )
+                ))
+            ) : (
+                <LoadingIcon />
+            )}
+            {topics && follows ? (
+                topics.map((topic, index) => (
+                    follows.includes(topic.id) ? (
+                        false
+                    ) : (
                         <a 
                             href={`/followTopic/${topic.id}`}
-                            className="button-follow"
+                            className=""
                             onClick={e => toggleFollowTopic(e, true, topic.id)}
-                        >
-                            {topic.data.topic}
+                            key={index}
+                            >
+                                <div className="follow profile-topic">
+                                    <h4>{topic.data.topic}</h4>
+                                </div>
                         </a>
-                    </div>
-                )
-            ))}
+                    )
+                ))
+            ) : (
+                <LoadingIcon />
+            )}
+
             </div>
         </div>
     );

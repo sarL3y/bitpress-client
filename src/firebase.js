@@ -80,7 +80,7 @@ class Firebase {
         await !count ? this.db.collection('topics').add({
             topic
         }) : (
-            alert(`Topic "${topic.topic}" already exists!`)
+            alert(`Topic "${topic.topic}" already exists! Now following...`)
         )
     }
 
@@ -88,9 +88,10 @@ class Firebase {
         if(!this.auth.currentUser) {
             return alert("Not authorized");
         }
+
         const topicToFollow = await this.db
             .collection('topics')
-            .where('topic.topic', '==', `${topic}`)
+            .where('topic.topic', '==', `${topic.toUpperCase()}`)
             .get();
 
         let docId;
@@ -192,8 +193,6 @@ class Firebase {
                 follows: await this.countFollows(follow.data().topic)
             })
         })
-
-        console.log(followArray);
 
         return followArray;
     }
