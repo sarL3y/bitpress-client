@@ -5,8 +5,6 @@ import firebase from '../firebase';
 import Topics from './Topics';
 
 import './Profile.scss';
-import './Topics.scss';
-import './Sources.scss';
 
 export default function Profile(props) {
 
@@ -26,20 +24,21 @@ export default function Profile(props) {
             <Navbar {...props} />
 
             <div className="container-profile">
-                <div className="page-headers">
+                <div className="page-headers-profile">
                     <h2>Profile</h2>
                     <p>Lorem Ipsum</p>
+                </div>
+
+                <div className="container-preferences">
+                    <h3>Preferences</h3>
+                    <h4>Topics</h4>
+                    <Topics />
                 </div>
 
                 <div className="container-personal-info">
                     <h3>Personal Info</h3>
                     <p>Username: {firebase.auth.currentUser.displayName}</p>
                     <p>Email: {firebase.auth.currentUser.email}</p>
-                </div>
-                <div className="container-preferences">
-                    <h3>Preferences</h3>
-                    <h4>Topics</h4>
-                    <Topics />
                 </div>
             </div>
         </main>

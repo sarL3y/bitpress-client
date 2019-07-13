@@ -53,6 +53,9 @@ export default function Topic(props) {
             .then(newTopic => {
                 let newTopicTitle = newTopic.title;
 
+                // let today = new Date();
+                // console.log(today);
+
                 fetch(`https://newsapi.org/v2/top-headlines?q=${newTopicTitle}&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
                         .then(response => {
                             response.json()

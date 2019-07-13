@@ -13,42 +13,46 @@ nav.navbar {
 }
 
 .navbar-brand {
+    display: flex;
+    align-items: center;
     order: 1;
     flex: 1;
-    margin: auto;
-    font-family: 'IBMPlexSerif-Medium', serif;
-    text-shadow: 1px 1px 1px rgba(100, 100, 100, 0.568);
 }
 
 .navbar-logo {
-    max-height: 48px;
+    max-width: 190px;
 }
 
-.navbar-news {
-    order: 2;
-    flex: 2;
-    display: flex;
-    align-items: center;
-    font-size: calc(8px + 1vmin);
-    overflow-x: hidden;
-    word-wrap: none;
+// .navbar-news {
+//     order: 2;
+//     flex: 2;
+//     display: flex;
+//     align-items: center;
+//     font-size: calc(8px + 1vmin);
+//     overflow-x: hidden;
+//     word-wrap: none;
 
-    &:hover {
-        text-decoration: underline;
-    }
-}
+//     &:hover {
+//         text-decoration: underline;
+//     }
+// }
 
 .navbar-search-form {
-    order: 3;
-    flex: 1;
     display: flex;
+    order: 3;
     align-items: center;
-    justify-content: flex-end;
+
+    form {
+        display: flex;
+        align-items: center;
+    }
 
     input {
+        flex: 1;
         padding: 5px;
         font-size: 16px;
-        min-width: 250px;
+        min-width: 200px;
+        max-width: 300px;
     }
 
     button {
@@ -56,17 +60,20 @@ nav.navbar {
     }
 }
 
-.navbar-links {
-    order: 4;
-    flex: 1;
+.navbar-form-input-text {
     display: flex;
-    justify-content: center;
+    align-items: center;
+}
+
+.navbar-buttons {
+    display: flex;
+    flex-direction: row;
+    order: 4;
     align-items: center;
 }
 
 .navbar-buttons > a {
-    justify-content: center;
-    align-items: center;
+    
     padding: 7px 15px;
     font-size: 15px;
     font-weight: bold;
@@ -103,9 +110,18 @@ a.primary {
     }
 }
 
-@media (max-width: 600px) {
+@media all and (max-width: 600px) and (min-width: 300px) {
+    
+    nav.navbar {
+        height: 50px;
+    }
+
     .mobile-hidden {
         display: none;
+    }
+
+    .navbar-logo {
+        max-width: 100px;
     }
 
     .navbar-buttons > a {
@@ -141,9 +157,14 @@ a.primary {
         justify-content: flex-end;
         align-items: center;
     }
+}
+
+@media all and (max-width: 1000px) and (min-width: 700px) {
+    .mobile-hidden {
+        display: none;
+    }
 
     .navbar-logo {
-        max-height: 30px;
-        justify-self: center;
+        max-width: 150px;
     }
 }

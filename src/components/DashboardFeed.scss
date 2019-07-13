@@ -22,10 +22,8 @@
 .dashboard-card {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    flex-grow: 1;
+    flex: 1;
     background-color: white;
-    max-width: 175px;
     margin: 2px;
     padding: 5px;
     border: 1px solid grey;

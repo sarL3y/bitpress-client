@@ -58,7 +58,7 @@ export default function Topics(props) {
     async function addTopic() {
 
         try {
-            await firebase.addTopic({ "topic": topic.toUpperCase(), owner: firebase.auth.currentUser.uid });
+            await firebase.addTopic({ "topic": topic.toUpperCase() });
             await firebase.followAddedTopic(topic)
                 .then(topicToFollow => {
                     firebase.addFollow(topicToFollow.id);               
