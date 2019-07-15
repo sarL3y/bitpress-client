@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 
 import './Login.scss';
 
-const Login = props => {
+export default function Login(props) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -59,5 +59,3 @@ const Login = props => {
         </main>
     );
 };
-
-export default Login;

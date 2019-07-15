@@ -56,7 +56,7 @@ export default function Topic(props) {
                 // let today = new Date();
                 // console.log(today);
 
-                fetch(`https://newsapi.org/v2/top-headlines?q=${newTopicTitle}&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
+                fetch(`https://newsapi.org/v2/everything?q=${newTopicTitle}&sortBy=relevancy&sortBy=publishedAt&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
                         .then(response => {
                             response.json()
                                 .then(newResponse => {
@@ -90,54 +90,65 @@ export default function Topic(props) {
                     <div className="row-topics">
                         <TopicsBar />
                     </div>
-
-                    <div className="page-headers">
-                    <h2>BitPress Topic Page</h2>
-                    <p>Do some topic stuff.</p>
-                </div>
                 
-                {topic && fetchedData ? (
-                    <div>
-                        <h3>{topic.data.topic}</h3>
-                        <p>{followsCount} Following</p>
-                            {follows.includes(topic.id) ? (
-                                <div className="button-unFollow unFollowTopic">
+                    {topic ? (
+                        <div className="topic-headers">  
+                            <div className="border-heavy-top"></div>
+                            <p className="topic-header">THE TOP HEADLINES FOR</p>
+                            <p className="topic-title">{topic.data.topic}</p>
+                            <div className="border-heavy-bottom"></div>
+                            <div className="follower-header">
+                                <div className="follower-count">
+                                    <p><span className="follower-count-number">{followsCount}</span> following</p>   
+                                </div>  
+                                {follows.includes(topic.id) ? (
                                     <a 
                                         href={`/unFollowTopic/${topic.id}`}
                                         onClick={e => toggleFollowTopic(e, false, topic.id)}
                                     >
-                                        Following
+                                        <div className="button-topic-following">
+                                            Following
+                                        </div>
                                     </a>
-                                </div>
-                                ) : (
-                                    <div className="button-follow followTopic">
-                                        <a 
-                                            href={`/followTopic/${topic.id}`}
-                                            onClick={e => toggleFollowTopic(e, true, topic.id)}
-                                        >
+                                    ) : (
+                                    <a
+                                        href={`/followTopic/${topic.id}`}
+                                        onClick={e => toggleFollowTopic(e, true, topic.id)}
+                                    >
+                                        <div className="button-topic-follow">
                                             Follow
-                                        </a>
+                                        </div>
+                                    </a>
+                                    )}
+                            </div>
+                        </div>
+                    ) : (
+                        <LoadingIcon />
+                    )}
+
+                    {fetchedData ? (
+                        fetchedData.articles.map((data, index) => (
+                            <div key={index} className="article-container">
+                                <div className="article-container-left">
+                                    <div className="article-image-container">
+                                        <img className="article-image" src={`${data.urlToImage}`} alt={"Article related"} />
                                     </div>
-                                )
-                            }
-                            {fetchedData.articles.map((data, index) => (
-                                <div key={index} className="article-card">
-                                    <p>{data.title}</p>
-                                    <a href={`${data.url}`} rel="noreferrer">{data.url}</a>
-                                    <p>By: {`${data.author}`}</p> 
-                                    <p>Date posted: July 7th, 2019</p>
-                                    <img src={`${data.url}`} alt={`${"Alt text"}`} />
                                 </div>
 
-                            ))}
-                    </div>
-
-                ) : (
-                    <div className="container-topic">
+                                <div className="article-container-right">
+                                    <p className="article-reporting"><span className="article-author">{`${data.author}`}</span> reporting for <span className="article-source">{`${data.source.name}`}</span>:</p>
+                                    <a className="article-title" href={`${data.url}`} rel="noreferrer">
+                                        <h4>{`${data.title}`}</h4>
+                                    </a>
+                                    <p className="article-description">{`${data.description}`}</p>
+                                    <p className="article-date">Published: {`${data.publishedAt.substring(0, 10)}`}</p>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
                         <LoadingIcon />
-                    </div>
-                )}
-            </div>
-        </main>
+                    )}
+                </div>
+            </main>
     );
 };
