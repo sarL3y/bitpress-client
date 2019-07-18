@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Navbar from './Navbar';
-import TopicsBar from './TopicsBar';
-import DashboardFeed from './DashboardFeed';
 import firebase from '../firebase';
+
+import Navbar from './Navbar';
+import DashboardFeed from './DashboardFeed';
 
 import './Dashboard.scss';
 import './DashboardFeed.scss';
@@ -16,23 +16,21 @@ export default function Dashboard(props) {
     }
 
     return (
-        <div>
+        <main role="main">
             <Navbar {...props} />
 
             <div className="container-dashboard">
-                <div className="row-topics">
-                    <TopicsBar />
-                </div>
-
-                <div className="page-headers">
-                    <h2>BitPress Dashboard</h2>
-                    <p>Do some dashboard stuff.</p>
+                <div className="dashboard-headers">
+                    {/* <div className="border-heavy-top"></div> */}
+                    {/* <p className="dashboard-header">THE NEWS.</p> */}
+                    <p className="dashboard-title">YOUR NEWS.</p>
+                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
                 
                 <div className="container-feed">
                     <DashboardFeed />
                 </div>
             </div>
-        </div>
+        </main>
     ); 
 };

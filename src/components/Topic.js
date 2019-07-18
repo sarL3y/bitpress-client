@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react';
 
 import firebase from '../firebase';
 import Navbar from './Navbar';
-import TopicsBar from './TopicsBar';
 import LoadingIcon from './LoadingIcon';
 
 import './Topic.scss';
@@ -87,10 +86,7 @@ export default function Topic(props) {
             <main role="main">
                 <Navbar {...props} />
                 <div className="container-topic">
-                    <div className="row-topics">
-                        <TopicsBar />
-                    </div>
-                
+
                     {topic ? (
                         <div className="topic-headers">  
                             <div className="border-heavy-top"></div>

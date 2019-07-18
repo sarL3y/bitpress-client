@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import firebase from './firebase';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+
+import firebase from './firebase';
 
 import Dashboard from './components/Dashboard';
 import HomePage from './components/HomePage';

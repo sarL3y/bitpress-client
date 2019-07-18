@@ -2,8 +2,12 @@
 
 $button-color-primary: #385b66;
 
+.nav-wrapper {
+    
+}
+
 nav.navbar {
-    position: fixed;
+    position: relative;
     display: flex;
     background-color: $background-color-light;
     height: 60px;
@@ -88,7 +92,7 @@ nav.navbar {
     }
 
     &:last-child {
-        margin-right: 10px;
+        margin-right: 20px;
     }
 
     &:hover {
@@ -110,8 +114,33 @@ a.primary {
     }
 }
 
+.row-topics {
+    display: flex;
+    background-color: white;
+    color: $font-color-dark;
+    width: 100vw;
+    padding: 10px;
+    overflow: auto;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.row-topic {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 5px;
+    margin: auto 10px;
+    font-size: 14px;
+    white-space: nowrap;
+    font-weight: bold;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 @media all and (max-width: 600px) and (min-width: 300px) {
-    
     nav.navbar {
         height: 50px;
     }

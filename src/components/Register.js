@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import firebase from '../firebase';
 
 import Navbar from './Navbar';
@@ -25,9 +26,11 @@ const Register = props => {
             <Navbar {...props} />
 
             <div className="container-register">
-                <div className="page-headers">
-                    <h2>BitPress Register Page</h2>
-                    <p>Do some Register stuff.</p>
+                <div className="register-headers">
+                    {/* <div className="border-heavy-top"></div> */}
+                    {/* <p className="register-header">THE NEWS.</p> */}
+                    <p className="register-title">REGISTER.</p>
+                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
 
                 <div className="form-register">

@@ -11,21 +11,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3vh;
-    margin-bottom: 5vh;
+    background-color: white;
+    width: 100%;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 3vh 0px;
     font-family: 'DM Serif Text', serif;
 }
 
 .topic-header {
     font-size: calc(14px + 2vmin);
     line-height: calc(12px + 2vmin);
-    font-family: 'DM Serif Display', serif;
+    font-family: 'DM Serif Text', serif;
 }
 
 .topic-title {
     font-size: calc(20px + 7vmin);
     line-height: calc(20px + 5vmin);
-    font-family: 'DM Serif Display', serif;
+    font-family: 'DM Serif Text', serif;
     font-weight: bold;
 }
 
@@ -163,7 +166,7 @@
 
     .article-container {
         flex-direction: column;
-        width: 40%;
+        width: 80%;
     }
 }
 

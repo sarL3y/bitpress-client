@@ -21,7 +21,11 @@
     background-color: $background-color-light;
     margin: 2px;
     border-radius: 5px;
-    overflow: hidden;   
+    overflow: hidden;
+
+    > img {
+        object-fit: contain;
+    }
 }
 
 .tinyNewsTitleSmall {

@@ -12,3 +12,22 @@
     }
 }
 
+.register-headers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 3vh 0px;
+    font-family: 'DM Serif Text', serif;
+}
+
+.register-title {
+    font-size: calc(20px + 6vmin);
+    line-height: calc(20px + 5vmin);
+    font-family: 'DM Serif Text', serif;
+    font-weight: bold;
+}
+

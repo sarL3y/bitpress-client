@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import firebase from '../firebase';
-import useCountFollows from '../hooks/useCountFollows';
 import LoadingIcon from './LoadingIcon';
 
 import './DashboardFeed.scss';
 
 export default function DashboardFeed() {
 
-	const { allFollows } = useCountFollows(null);
 	const [topics, setTopics] = useState([]);
 	const [follows, setFollows] = useState([]);
-
+	const [dataIsFetched, setDataIsFetched] = useState(false);
 
 	useEffect(() => {
 		firebase.addNewReader();
@@ -25,68 +24,67 @@ export default function DashboardFeed() {
                         id: topic.id,
                         data: topic.data().topic,
                     });
-                });
-
-                newTopics.sort((a, b) => {
-
-                    return a.data.topic - b.data.topic;
-                });
-
+				});
+				
                 setTopics(newTopics);
 			});
 			
 		firebase.getUserFollows()
             .then(follows => {
-                let newFollows = [];
+				let newFollows = [];
+				
+				follows.forEach(follow => {
+					newFollows.push(follow);
+				});
 
-                follows.forEach(follow => {
-                    newFollows.push(follow);
-                });
-
-                setFollows(newFollows);
+				setDataIsFetched(true);
+				setFollows(newFollows);
 			});
-
-		firebase.getAllFollows();
-
 	}, []);
 
-	return topics && allFollows ? (
-		!follows ? (
-			<div>Head to your profile to start following!</div>
-		) : (
-			<div className="container-topics-list">
-				<h3>Following</h3>
-				<div className="container-following">
-				{topics.map((topic, index) => (
-					follows.includes(topic.id) ? (
-						<a key={index} href={`/topic/${topic.id}`}>
-							<div className="dashboard-card">
-								<h4>{topic.data.topic}</h4>
-							</div>
-						</a>
-					) : (
-						false
-					)
-				))}
+	const topicsList = () => {
+		return (
+			follows.length < 1 && dataIsFetched ? newUserBreadcrumb() : (
+				<div className="container-topics-list">
+					<h3>Following</h3>
+					<div className="container-following">
+					{topics.map((topic, index) => (
+						follows.includes(topic.id) ? (
+							<a key={index} href={`/topic/${topic.id}`}>
+								<div className="dashboard-card">
+									<h4>{topic.data.topic}</h4>
+								</div>
+							</a>
+						) : (
+							false
+						)
+					))}
+					</div>
+	
+					<h3>Everything Else</h3>
+					<div className="container-trending">
+					{topics.map((topic, index) => (
+						follows.includes(topic.id) ? (
+							false
+						) : (
+							<a key={index} href={`/topic/${topic.id}`}>
+								<div className="dashboard-card">
+									<h4>{topic.data.topic}</h4>
+								</div>
+							</a>
+						))
+					)}
+					</div>
 				</div>
-
-				<h3>Everything Else</h3>
-				<div className="container-trending">
-				{topics.map((topic, index) => (
-					follows.includes(topic.id) ? (
-						false
-					) : (
-						<a key={index} href={`/topic/${topic.id}`}>
-							<div className="dashboard-card">
-								<h4>{topic.data.topic}</h4>
-							</div>
-						</a>
-					))
-				)}
-				</div>
-			</div>		
+			)
 		)
-	) : (
-		<LoadingIcon />
-	)
+	}
+
+	const newUserBreadcrumb = () => {
+		return (
+			<div className="breadcrumb">Head to your <Link className="button primary" to="/profile">Profile</Link> to start following topics, or click on a TOPIC above to read its top headlines. Come back to the Dashboard to see everything you're following, and more.</div>
+		)
+	};
+
+	return !dataIsFetched ? <LoadingIcon /> : topicsList();
 };

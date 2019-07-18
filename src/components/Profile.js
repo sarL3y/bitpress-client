@@ -24,9 +24,11 @@ export default function Profile(props) {
             <Navbar {...props} />
 
             <div className="container-profile">
-                <div className="page-headers-profile">
-                    <h2>Profile</h2>
-                    <p>Lorem Ipsum</p>
+                <div className="profile-headers">
+                    {/* <div className="border-heavy-top"></div> */}
+                    {/* <p className="profile-header">THE NEWS.</p> */}
+                    <p className="profile-title">PROFILE.</p>
+                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
 
                 <div className="container-preferences">

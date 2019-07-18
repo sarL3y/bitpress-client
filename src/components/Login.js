@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import firebase from '../firebase';
 
 import Navbar from './Navbar';
@@ -24,9 +25,11 @@ export default function Login(props) {
         <main role="main">
             <Navbar {...props} />
             <div className="container-login">
-                <div className="page-headers">
-                    <h2>BitPress Login Page</h2>
-                    <p>Do some login stuff.</p>
+                <div className="login-headers">
+                    {/* <div className="border-heavy-top"></div> */}
+                    {/* <p className="login-header">THE NEWS.</p> */}
+                    <p className="login-title">LOGIN.</p>
+                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
 
                 <div className="form-login">

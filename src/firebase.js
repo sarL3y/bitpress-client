@@ -47,7 +47,7 @@ class Firebase {
     }
 
     async getTopics() {
-        const topics = await this.db.collection('topics').get();
+        const topics = await this.db.collection('topics').orderBy('topic.topic').get();
 
         return topics;
     }

@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 import firebase from '../firebase';
 
+import TopicsBar from './TopicsBar';
+
 import './Navbar.scss';
+import './TopicsBar.scss';
 
 export default function Navbar(props) {
     
@@ -14,52 +17,59 @@ export default function Navbar(props) {
     }
 
     return (
-        <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="nav-wrapper">
+            <nav className="navbar" role="navigation" aria-label="main navigation">
+                <div className="navbar-brand">
+                    <Link to="/HomePage">
+                        <h1><img src="/bitPressIconLeftFront.png" alt="bitPress logo" className="navbar-logo" /></h1>
+                    </Link>
+                </div>
 
-            <div className="navbar-brand">
-                <Link to="/">
-                    <h1><img src="/bitPressIconLeftFront.png" alt="bitPress logo" className="navbar-logo" /></h1>
-                </Link>
+
+                {/* V1.1 */}
+                {/* <div className="navbar-news mobile-hidden">
+                    <a href="https://www.cnn.com/2019/06/10/politics/donald-trump-cnbc-tariffs-china-mexico/index.html" className="news-link">
+                        "The 27 most dubious lines from Donald ..." >>
+                    </a>
+                </div> */}
+
+                {!firebase.getCurrentUsername() ? false : (
+                    <div className="navbar-search-form mobile-hidden">
+                        <form onSubmit={e => e.preventDefault() && false}>
+                            <div className="navbar-form-input-text">
+                                <input 
+                                    placeholder="Oat Milk"
+                                    type="text"
+                                    value=""
+                                    aria-label="topic"
+                                    onChange={e => e.preventDefault()}
+                                />
+
+                                <button type="submit" className="button navbar-search-button" onClick={e => e.preventDefault}>
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                )}
+
+                {!firebase.getCurrentUsername() ? (
+                    <div className="navbar-buttons">
+                        <Link className="button primary" to="/register">Sign Up</Link>
+                        <Link className="button" to="/login">Login</Link>
+                    </div>
+                ) : (
+                    <div className="navbar-buttons">
+                        <Link className="button primary" to="/dashboard">Dashboard</Link>
+                        <Link className="button" to="/profile">Profile</Link>
+                        <a href="/logout"className="button" onClick={logout}>Logout</a>
+                    </div>
+                )}
+            </nav>
+
+            <div className="row-topics">
+                <TopicsBar {...props} />
             </div>
-
-            {/* <div className="navbar-news mobile-hidden">
-                <a href="https://www.cnn.com/2019/06/10/politics/donald-trump-cnbc-tariffs-china-mexico/index.html" className="news-link">
-                    "The 27 most dubious lines from Donald ..." >>
-                </a>
-            </div> */}
-
-            {!firebase.getCurrentUsername() ? false : (
-                <div className="navbar-search-form mobile-hidden">
-                    <form onSubmit={e => e.preventDefault() && false}>
-                        <div className="navbar-form-input-text">
-                            <input 
-                                placeholder="Oat Milk"
-                                type="text"
-                                value=""
-                                aria-label="topic"
-                                onChange={e => e.preventDefault()}
-                            />
-
-                            <button type="submit" className="button navbar-search-button" onClick={e => e.preventDefault}>
-                                Search
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            )}
-
-            {!firebase.getCurrentUsername() ? (
-                <div className="navbar-buttons">
-                    <Link className="button primary" to="/register">Sign Up</Link>
-                    <Link className="button" to="/login">Login</Link>
-                </div>
-            ) : (
-                <div className="navbar-buttons">
-                    <Link className="button primary" to="/dashboard">Dashboard</Link>
-                    <Link className="button" to="/profile">Profile</Link>
-                    <a href="/logout"className="button" onClick={logout}>Logout</a>
-                </div>
-            )}
-        </nav>
+        </div>
     );
 };
