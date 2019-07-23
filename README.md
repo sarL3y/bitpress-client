@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# bitPress - The News. Your way.
 
-## Available Scripts
+<a href="https://bitpress-client.herokuapp.com/">bitPress - Link to Live Site</a><br>
 
-In the project directory, you can run:
+[![Build Status](https://travis-ci.org/sarL3y/bitpress-client.svg?branch=master)](https://travis-ci.org/sarL3y/bitpres-client)
 
-### `npm start`
+This app allows you to customize the news to your interests. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<!-- ### Demo
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Users are directed to a landing page:
 
-### `npm test`
+<h1 align="center">
+  <img src="public/img/Homepage.png" alt="Homepage" width="600">
+</h1>
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users are directed to submit a request form:
 
-### `npm run build`
+<h1 align="center">
+  <img src="public/img/SubmitForm.png" alt="Submit Form" width="600">
+</h1>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Company/admin can use <a href="https://moveout-capstone.herokuapp.com/dashboard">Dashboard</a> to login:
+<h4>Credentials:</h4> 
+Username: moveoutadmin 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Password: moveoutadmin123
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h1 align="center">
+  <img src="public/img/LoginPage.png" alt="Login Page" width="600">
+</h1>
 
-### `npm run eject`
+Company can view the dashboard to see submitted requests, with the option to delete:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<h1 align="center">
+  <img src="public/img/Dashboard.png" alt="Login Page" width="600">
+</h1>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### API
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This app uses Mongoose Schemas to create the submitted forms. A fetch call is used to retrieve the submitted forms from the dashboard. -->
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Technologies
+* ReactJS with Hooks
+* Sass/SCSS
+* Google Firebase/Firestore
+* Continuous Integration with TravisCI
+* Auto-deployed with Heroku
+* Testing with Jest (In progress)
