@@ -1,7 +1,5 @@
 @import "src/index.scss";
 
-$button-color-primary: #385b66;
-
 .nav-wrapper {
     
 }
@@ -76,8 +74,7 @@ nav.navbar {
     align-items: center;
 }
 
-.navbar-buttons > a {
-    
+.navbar-buttons > a { 
     padding: 7px 15px;
     font-size: 15px;
     font-weight: bold;
@@ -114,35 +111,37 @@ a.primary {
     }
 }
 
-.row-topics {
-    display: flex;
-    background-color: white;
-    color: $font-color-dark;
-    width: 100vw;
-    padding: 10px;
-    overflow: auto;
-    font-size: 16px;
-    font-weight: bold;
-}
+// .row-topics {
+//     display: flex;
+//     background-color: white;
+//     color: $font-color-dark;
+//     width: 100vw;
+//     padding: 10px;
+//     overflow: auto;
+//     font-size: 16px;
+//     font-weight: bold;
+// }
 
-.row-topic {
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-    border-radius: 5px;
-    margin: auto 10px;
-    font-size: 14px;
-    white-space: nowrap;
-    font-weight: bold;
+// .row-topic {
+//     display: flex;
+//     flex-direction: row;
+//     background-color: white;
+//     border-radius: 5px;
+//     margin: auto 10px;
+//     font-size: 14px;
+//     white-space: nowrap;
+//     font-weight: bold;
 
-    &:hover {
-        text-decoration: underline;
-    }
-}
+//     &:hover {
+//         text-decoration: underline;
+//     }
+// }
 
 @media all and (max-width: 600px) and (min-width: 300px) {
     nav.navbar {
         height: 50px;
+        font-size: calc(12px);
+
     }
 
     .mobile-hidden {
@@ -156,12 +155,10 @@ a.primary {
     .navbar-buttons > a {
         justify-content: flex-end;
         align-items: flex-end;
-        font-size: 12px;
         font-weight: bold;
         padding: 5px;
         margin: 5px;
         border-radius: 5px;
-        background-color: $background-color-light;
     
         &:first-child {
             padding: 5px 10px;

@@ -35,10 +35,8 @@ export default function HomePage(props) {
 
             <div className="container-homepage">
                 <div className="homepage-headers">
-                    {/* <div className="border-heavy-top"></div> */}
                     <p className="homepage-header">THE NEWS.</p>
                     <p className="homepage-title">YOUR WAY.</p>
-                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
 
                 <div className="homepage-buttons">

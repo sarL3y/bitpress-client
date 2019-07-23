@@ -36,11 +36,54 @@
 }
 
 .breadcrumb {
-    width: 80vw;
+    width: 50vw;
+    padding: 50px;
+    margin: 10px;
+    background-color: white;
+}
+
+.breadcrumb-text {
+    font-size: calc(10px + 2vmin);
+    line-height: 28px;
+    margin: 5px;
+}
+
+a.button {
+    padding: 7px 13px;
+    margin: 3px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: $background-color-light;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+a.primary {
+    background-color: $button-color-primary;
+    color: #ffffff;
+
+    &:hover {
+        background-color: #19444e;
+        cursor: pointer;
+
+    }
 }
 
 @media all and (max-width: 600px) and (min-width: 300px) {
     .dashboard-card {
         font-size: 12px;
+    }
+
+    .breadcrumb {
+        width: 90vw;
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .breadcrumb-text {
+        font-size: calc(14px);
     }
 }

@@ -25,15 +25,10 @@ export default function Profile(props) {
 
             <div className="container-profile">
                 <div className="profile-headers">
-                    {/* <div className="border-heavy-top"></div> */}
-                    {/* <p className="profile-header">THE NEWS.</p> */}
                     <p className="profile-title">PROFILE.</p>
-                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
 
                 <div className="container-preferences">
-                    <h3>Preferences</h3>
-                    <h4>Topics</h4>
                     <Topics />
                 </div>
 

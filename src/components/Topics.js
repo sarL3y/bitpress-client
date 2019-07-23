@@ -103,7 +103,7 @@ export default function Topics(props) {
                     />
 
                     <button type="submit" className="form-topics-submit" onClick={(topic) => addTopic(topic)}>
-                        Add
+                        Search
                     </button>
                 </div>
             </form>

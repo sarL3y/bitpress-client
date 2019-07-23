@@ -5,7 +5,7 @@
     background-color: white;
     color: $font-color-dark;
     width: 100vw;
-    padding: 12px;
+    padding: 16px 12px 16px 12px;
     overflow-x: auto;
     font-size: 16px;
     font-weight: bold;
@@ -32,7 +32,8 @@
         background-color: white;
         color: $font-color-dark;
         width: 100vw;
-        padding: 12px;
+        padding: 11px;
+        overflow: auto;
         font-size: 16px;
         font-weight: bold;
     }
@@ -41,7 +42,6 @@
         display: flex;
         flex-direction: row;
         background-color: white;
-        border-radius: 5px;
         margin: auto 10px;
         font-size: 12px;
         font-weight: bold;

@@ -26,24 +26,21 @@ export default function Login(props) {
             <Navbar {...props} />
             <div className="container-login">
                 <div className="login-headers">
-                    {/* <div className="border-heavy-top"></div> */}
-                    {/* <p className="login-header">THE NEWS.</p> */}
                     <p className="login-title">LOGIN.</p>
-                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
 
                 <div className="form-login">
                     <form onSubmit={e => e.preventDefault() && false}>
-                        <div className="form-input-email">
+                        <div className="form-login-input-email">
                             <input 
-                                placeholder="Email"
+                                placeholder="Email Address"
                                 type="email"
                                 value={email}
                                 aria-label="uemail"
                                 onChange={e => setEmail(e.target.value)}
                                 />
                         </div>
-                        <div className="form-input-password">
+                        <div className="form-login-input-password">
                             <input 
                                 placeholder="Password"
                                 type="password"
@@ -53,7 +50,7 @@ export default function Login(props) {
                                 />
                         </div>
 
-                        <button type="submit" className="button primary" onClick={login}>
+                        <button type="submit" className="button-login primary" onClick={login}>
                             Login
                         </button>
                     </form>

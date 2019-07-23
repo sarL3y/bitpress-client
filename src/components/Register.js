@@ -35,7 +35,7 @@ const Register = props => {
 
                 <div className="form-register">
                     <form onSubmit={e => e.preventDefault() && false}>
-                        <div className="form-input-text">
+                        <div className="form-register-input-username">
                             <input 
                                 placeholder="Username"
                                 type="text"
@@ -44,16 +44,16 @@ const Register = props => {
                                 onChange={e => setName(e.target.value)}
                                 />
                         </div>
-                        <div className="form-input-email">
+                        <div className="form-register-input-email">
                             <input 
-                                placeholder="Email"
+                                placeholder="Email Address"
                                 type="email"
                                 value={email}
                                 aria-label="email"
                                 onChange={e => setEmail(e.target.value)}
                                 />
                         </div>
-                        <div className="form-input-text">
+                        <div className="form-register-input-password">
                             <input 
                                 placeholder="Password"
                                 type="password"
@@ -63,7 +63,7 @@ const Register = props => {
                                 />
                         </div>
 
-                        <button type="submit" className="button primary" onClick={onRegister}>
+                        <button type="submit" className="button-register primary" onClick={onRegister}>
                             Register
                         </button>
                     </form>

@@ -1,14 +1,16 @@
+@import "src/index.scss";
+
 .container-register {
     display: flex;
     justify-content: space-around;
 }
 
 .primary {
-    background-color: rgb(19, 91, 51);
+    background-color: $button-color-primary;
     color: #ffffff;
 
     &:hover {
-        background-color: rgb(1, 79, 36);
+
     }
 }
 
@@ -31,3 +33,60 @@
     font-weight: bold;
 }
 
+.form-register {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    width: 80vw;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 3vh 0px;
+
+    form {
+        width: 35%;
+        align-items: center;
+    }
+}
+
+.form-register-input-username, .form-register-input-email, .form-register-input-password {
+    display: flex;
+
+}
+
+.form-register form input {
+    flex: 1;
+    font-size: 18px;
+    border: 1px solid lightgray;
+    padding: 10px 15px;
+    margin: 10px 0px;
+}
+
+.button-register {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 3px;
+    margin: 10px 0px;
+
+    &:hover {
+        background-color: #19444e;
+        cursor: pointer;
+    }
+}
+
+@media all and (max-width: 1000px) and (min-width: 300px) {
+
+    .form-register {
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        } 
+    }
+
+    .button-register {
+        width: 150px;
+    }
+}

@@ -7,7 +7,7 @@
 
 .topics-headers {
     max-width: 600px;
-    margin: 20px;
+    margin: 10px;
 }
 
 .form-topics {
@@ -39,6 +39,11 @@
     font-weight: bold;
     font-size: calc(10px + 1vmin);
     margin-left: 5px;
+
+    &:hover {
+        background-color: #19444e;
+        cursor: pointer;
+    }
 }
 
 .topics {
@@ -46,7 +51,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 10px 10px 50px 10px;
+    margin: 10px 10px 20px 10px;
     max-width: 800px;
 }
 

@@ -1,11 +1,11 @@
-$button-color-primary: #385b66;
+@import "src/index.scss";
 
 .container-login {
     display: flex;
     justify-content: space-around;
 }
 
-.button.primary {
+.primary {
     background-color: $button-color-primary;
 }
 
@@ -26,4 +26,63 @@ $button-color-primary: #385b66;
     line-height: calc(20px + 5vmin);
     font-family: 'DM Serif Text', serif;
     font-weight: bold;
+}
+
+.form-login {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    width: 80vw;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 3vh 0px;
+
+    form {
+        
+        width: 35%;
+        align-items: center;
+    }
+}
+
+.form-login-input-email, .form-login-input-password {
+    display: flex;
+
+}
+
+.form-login form input {
+    flex: 1;
+    font-size: 18px;
+    border: 1px solid lightgray;
+    padding: 10px 15px;
+    margin: 10px 0px;
+}
+
+.button-login {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 3px;
+    margin: 10px 0px;
+
+    &:hover {
+        background-color: #19444e;
+        cursor: pointer;
+    }
+}
+
+@media all and (max-width: 1000px) and (min-width: 300px) {
+
+    .form-login {
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        } 
+    }
+
+    .button-login {
+        flex: 1;
+    }
 }

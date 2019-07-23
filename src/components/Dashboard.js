@@ -21,10 +21,7 @@ export default function Dashboard(props) {
 
             <div className="container-dashboard">
                 <div className="dashboard-headers">
-                    {/* <div className="border-heavy-top"></div> */}
-                    {/* <p className="dashboard-header">THE NEWS.</p> */}
                     <p className="dashboard-title">YOUR NEWS.</p>
-                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
                 
                 <div className="container-feed">

@@ -82,7 +82,10 @@ export default function DashboardFeed() {
 
 	const newUserBreadcrumb = () => {
 		return (
-			<div className="breadcrumb">Head to your <Link className="button primary" to="/profile">Profile</Link> to start following topics, or click on a TOPIC above to read its top headlines. Come back to the Dashboard to see everything you're following, and more.</div>
+			<div className="breadcrumb">
+				<p className="breadcrumb-text">Head to your <Link className="button" to="/profile">Profile</Link> to start following topics, or click on a topic above to read its top headlines.</p>
+				<p className="breadcrumb-text">Come back to the <Link className="button primary" to="/dashboard">Dashboard</Link> to see everything you're following, and more.</p>
+			</div>
 		)
 	};
 
