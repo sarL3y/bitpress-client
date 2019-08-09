@@ -260,7 +260,6 @@ class Firebase {
                 });
         });
 
-        console.log(topicTitles);
         return topicTitles;
     }
 

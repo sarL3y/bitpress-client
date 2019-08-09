@@ -88,8 +88,8 @@ export default function Topics(props) {
     return ( 
         <div className="container-topics">
             <div className="topics-headers">
-                <h4>Enter a topic to start following</h4>
-                <p>Click below to follow or unfollow your topics. When finished, head to the dashboard to view your feed.</p>
+                <h4>Enter a topic to start following.</h4>
+                <p>Click below to follow or unfollow topics that other readers and you have added. Head back to the dashboard to view your personal selections and click them to read their top headlines.</p>
             </div>
 
             <form className="form-topics" onSubmit={e => e.preventDefault() && false}>

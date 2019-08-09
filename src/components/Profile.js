@@ -14,7 +14,6 @@ export default function Profile(props) {
 
     if(!firebase.getCurrentUsername()) {
         alert("Please login");
-        console.log("PROFILE DID IT");
         props.history.replace("/login");
         return null;
     }
@@ -25,7 +24,7 @@ export default function Profile(props) {
 
             <div className="container-profile">
                 <div className="profile-headers">
-                    <p className="profile-title">PROFILE.</p>
+                    <h3 className="profile-title">PROFILE.</h3>
                 </div>
 
                 <div className="container-preferences">

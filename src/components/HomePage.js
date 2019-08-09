@@ -44,7 +44,7 @@ export default function HomePage(props) {
                     <Link className="button" to="/login">Login</Link>
                 </div>
 
-                <div className="container-homepage-topics">
+                {/* <div className="container-homepage-topics">
                 {topics.map((topic, index) => (
                     <a key={index} href={`/topic/${topic.id}`}>
                         <div className="homepage-card">
@@ -52,7 +52,7 @@ export default function HomePage(props) {
                         </div>
                     </a>
                 ))}
-                </div>
+                </div> */}
             </div>
         </main>
     );
