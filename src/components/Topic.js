@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-// Topic page will call the API in the useEffect
-// Topic page will have forward and back buttons to navigate to the topic page url
-// OR Topic page will have the rest of the topics in a list (solved by TopicsBar already)
-
 import firebase from '../firebase';
 import Navbar from './Navbar';
 import LoadingIcon from './LoadingIcon';
@@ -51,9 +47,6 @@ export default function Topic(props) {
             })
             .then(newTopic => {
                 let newTopicTitle = newTopic.title;
-
-                // let today = new Date();
-                // console.log(today);
 
                 fetch(`https://newsapi.org/v2/everything?q=${newTopicTitle}&sortBy=relevancy&sortBy=publishedAt&apiKey=2ebfd3fb49e24fb0bb7f76b9cab685b5`)
                         .then(response => {

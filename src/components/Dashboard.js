@@ -10,6 +10,8 @@ import './DashboardFeed.scss';
 
 export default function Dashboard(props) {
 
+    firebase.addNewReader();
+
     if(!firebase.getCurrentUsername()) {
         props.history.replace("/login");
         return null;

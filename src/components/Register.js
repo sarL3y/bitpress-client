@@ -27,10 +27,7 @@ const Register = props => {
 
             <div className="container-register">
                 <div className="register-headers">
-                    {/* <div className="border-heavy-top"></div> */}
-                    {/* <p className="register-header">THE NEWS.</p> */}
                     <p className="register-title">REGISTER.</p>
-                    {/* <div className="border-heavy-bottom"></div> */}
                 </div>
 
                 <div className="form-register">

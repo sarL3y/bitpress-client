@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import firebase from '../firebase';
-
 import LoadingIcon from './LoadingIcon';
 
 import './Topics.scss';
@@ -15,8 +14,6 @@ export default function Topics(props) {
     
     useEffect(() => {
 
-        firebase.addNewReader();
-
         firebase.getTopics()
             .then(topics => {
                 let newTopics = [];
@@ -27,11 +24,6 @@ export default function Topics(props) {
                         data: topic.data().topic,
                     });
                 });
-
-                // newTopics.sort((a, b) => {
-
-                //     return b.data - a.data;
-                // });
 
                 setTopics(newTopics);
             });
@@ -67,7 +59,6 @@ export default function Topics(props) {
 
             setIsLoading(!isLoading);
         } catch(error) {
-            console.log(error.message);
             await setTopic("");
             setIsLoading(!isLoading);
         }
