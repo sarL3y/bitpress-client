@@ -6,44 +6,46 @@
 
 This app allows you to customize the news to your interests. 
 
-<!-- ### Demo
+### bitPress Demo
 
-Users are directed to a landing page:
+Users are directed to a landing page which invites them to sign-up or login:
 
 <h1 align="center">
-  <img src="public/img/Homepage.png" alt="Homepage" width="600">
+  <img src="public/img/HomePage.png" alt="Homepage" width="600">
 </h1>
 
-Users are directed to submit a request form:
+Once logged in, the user is sent to their personal news dashboard:
 
 <h1 align="center">
-  <img src="public/img/SubmitForm.png" alt="Submit Form" width="600">
+  <img src="public/img/DashboardUnselected.png" alt="Dashboard" width="600">
 </h1>
 
-Company/admin can use <a href="https://moveout-capstone.herokuapp.com/dashboard">Dashboard</a> to login:
-<h4>Credentials:</h4> 
-Username: moveoutadmin 
-
-Password: moveoutadmin123
+If there aren't any news topics selected, they'll be directed to the Profile page where they can select topics (and create new ones) that they'll want to follow.
 
 <h1 align="center">
-  <img src="public/img/LoginPage.png" alt="Login Page" width="600">
+  <img src="public/img/Profile.png" alt="Profile" width="600">
 </h1>
 
-Company can view the dashboard to see submitted requests, with the option to delete:
+Returning to the dashboard, the user can now see the topics their following, along with everything else. 
 
 <h1 align="center">
-  <img src="public/img/Dashboard.png" alt="Login Page" width="600">
+  <img src="public/img/DashboardSelected.png" alt="Dashboard" width="600">
+</h1>
+
+The user can then navigate to the topic they want to read about by clicking on the topic:
+
+<h1 align="center">
+  <img src="public/img/TopicPage.png" alt="Topic page" width="600">
 </h1>
 
 ### API
 
-This app uses Mongoose Schemas to create the submitted forms. A fetch call is used to retrieve the submitted forms from the dashboard. -->
+This app uses Mongoose Schemas to create the submitted forms. A fetch call is used to retrieve the submitted forms from the dashboard.
 
 ### Technologies
 * ReactJS with Hooks
 * Sass/SCSS
 * Google Firebase/Firestore
 * Continuous Integration with TravisCI
-* Auto-deployed with Heroku
-* Testing with Jest (In progress)
+* Auto-deployment with Heroku
+* Testing with Jest/Enzyme
