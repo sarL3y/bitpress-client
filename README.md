@@ -2,7 +2,7 @@
 
 <a href="https://bitpress-client.herokuapp.com/">bitPress - Link to Live Site</a><br>
 
-[![Build Status](https://travis-ci.org/sarL3y/bitpress-client.svg?branch=master)](https://travis-ci.org/sarL3y/bitpres-client)
+[![Build Status](https://travis-ci.org/sarL3y/bitpress-client.svg?branch=master)](https://travis-ci.org/sarL3y/bitpress-client)
 
 This app allows you to customize the news to your interests. 
 
