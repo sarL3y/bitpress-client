@@ -38,9 +38,9 @@ The user can then navigate to the topic they want to read about by clicking on t
   <img src="public/img/TopicPage.png" alt="Topic page" width="600">
 </h1>
 
-### API
+### Database
 
-This app uses Mongoose Schemas to create the submitted forms. A fetch call is used to retrieve the submitted forms from the dashboard.
+This app uses Google Firebase and Firestore to handle all authentication and database functions. 
 
 ### Technologies
 * ReactJS with Hooks
