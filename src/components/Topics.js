@@ -51,7 +51,7 @@ export default function Topics(props) {
         const topicString = topic.toString();
 
         if (topicString.length < 2) {
-            return alert("Type in a topic to search!");
+            return alert("Enter a topic to search!");
         } else {
             try {
                 await firebase.addTopic({ "topic": topic.toUpperCase() });

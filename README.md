@@ -9,6 +9,11 @@ This app allows you to customize the news to your interests.
 ### bitPress Demo
 
 Users are directed to a landing page which invites them to sign-up or login:
+<details>
+  <summary>Demo Account Info:</summary>
+  <p>Email: demo@email.com</p>
+  <p>Password: Demo123</p>
+</details>
 
 <h1 align="center">
   <img src="public/img/HomePage.png" alt="Homepage" width="600">
