@@ -2,6 +2,8 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
 
+import { Redirect } from 'react-router-dom';
+
 // Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAagcLjq__JIH528h5XqPUzZUbrPWyP3RY",
@@ -36,10 +38,18 @@ class Firebase {
     }
 
     async register(name, email, password) {
-        await this.auth.createUserWithEmailAndPassword(email, password);
-        return this.auth.currentUser.updateProfile({
-            displayName: name
-        });
+        try {
+            await this.auth.createUserWithEmailAndPassword(email, password);
+            
+            await this.auth.currentUser.updateProfile({
+                    displayName: name
+            });
+
+            window.location = "/dashboard";
+
+        } catch(error) {
+            alert(`${error}`);
+        }
     }
 
     getCurrentUsername() {
@@ -110,31 +120,6 @@ class Firebase {
         }
         return this.db
             .collection('topics')
-            .doc(id)
-            .delete();
-    }
-
-    async getSources() {
-        const sources = await this.db.collection('sources').get()
-        return sources;
-    }
-
-    async addSource(source) {
-        if(!this.auth.currentUser) {
-            return alert("Not authorized");
-        }
-
-        return this.db.collection('sources').add({
-            source
-        });
-    }
-
-    deleteSource(id) {
-        if(!this.auth.currentUser) {
-            return alert("Not authorized");
-        }
-        return this.db
-            .collection('sources')
             .doc(id)
             .delete();
     }

@@ -13,11 +13,40 @@ const Register = props => {
     const [password, setPassword] = useState("");
 
     async function onRegister() {
-        try {
-            await firebase.register(name, email, password);
-            props.history.replace("/dashboard");
-        } catch (error) {
-            alert(error.message);
+        let pass = true;
+
+        const reader = await firebase.db
+            .collection('readers')
+            .where('username', "==", name)
+            .get();
+        
+        let count = 0;
+
+        reader.forEach(val => {
+            count++;
+        });
+
+        if(!count) {
+            if ( name.toString().length < 3 ) {
+                pass = false;
+                return alert('Username must be 3 or more characters long. Try again!');
+            } else if ( email.toString() === '' ) {
+                pass = false;
+            } else if ( password.toString() === '' ) {
+                pass = false;
+            }
+
+            if ( pass === false ) {
+                return alert('All fields required! Please try again.'); 
+            } else {
+                try {
+                    await firebase.register(name, email, password);
+                } catch (error) {
+                    alert(error.message);
+                }
+            }
+        } else {
+            return alert('Username already exists! Please try again.');
         }
     }
     
@@ -39,6 +68,7 @@ const Register = props => {
                                 value={name}
                                 aria-label="username"
                                 onChange={e => setName(e.target.value)}
+                                required
                                 />
                         </div>
                         <div className="form-register-input-email">
@@ -48,6 +78,7 @@ const Register = props => {
                                 value={email}
                                 aria-label="email"
                                 onChange={e => setEmail(e.target.value)}
+                                required
                                 />
                         </div>
                         <div className="form-register-input-password">
@@ -57,6 +88,7 @@ const Register = props => {
                                 value={password}
                                 aria-label="password"
                                 onChange={e => setPassword(e.target.value)}
+                                required
                                 />
                         </div>
 

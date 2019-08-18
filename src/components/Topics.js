@@ -48,19 +48,24 @@ export default function Topics(props) {
     }
 
     async function addTopic() {
+        const topicString = topic.toString();
 
-        try {
-            await firebase.addTopic({ "topic": topic.toUpperCase() });
-            await firebase.followAddedTopic(topic)
-                .then(topicToFollow => {
-                    firebase.addFollow(topicToFollow.id);               
-                    });
-            await setTopic("");
-
-            setIsLoading(!isLoading);
-        } catch(error) {
-            await setTopic("");
-            setIsLoading(!isLoading);
+        if (topicString.length < 2) {
+            return alert("Type in a topic to search!");
+        } else {
+            try {
+                await firebase.addTopic({ "topic": topic.toUpperCase() });
+                await firebase.followAddedTopic(topic)
+                    .then(topicToFollow => {
+                        firebase.addFollow(topicToFollow.id);               
+                        });
+                await setTopic("");
+    
+                setIsLoading(!isLoading);
+            } catch(error) {
+                await setTopic("");
+                setIsLoading(!isLoading);
+            }
         }
     }
 

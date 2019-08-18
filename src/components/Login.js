@@ -37,6 +37,7 @@ export default function Login(props) {
                                 value={email}
                                 aria-label="uemail"
                                 onChange={e => setEmail(e.target.value)}
+                                required
                                 />
                         </div>
                         <div className="form-login-input-password">
@@ -46,6 +47,7 @@ export default function Login(props) {
                                 value={password}
                                 aria-label="password"
                                 onChange={e => setPassword(e.target.value)}
+                                required
                                 />
                         </div>
 
