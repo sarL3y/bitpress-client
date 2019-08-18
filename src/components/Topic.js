@@ -126,7 +126,7 @@ export default function Topic(props) {
 
                                 <div className="article-container-right">
                                     <p className="article-reporting"><span className="article-author">{`${data.author}`}</span> reporting for <span className="article-source">{`${data.source.name}`}</span>:</p>
-                                    <a className="article-title" href={`${data.url}`} rel="noreferrer">
+                                    <a className="article-title" href={`${data.url}`} target="_blank" rel="noopener noreferrer">
                                         <h4>{`${data.title}`}</h4>
                                     </a>
                                     <p className="article-description">{`${data.description}`}</p>
