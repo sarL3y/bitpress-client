@@ -71,6 +71,21 @@
     max-width: 800px;
 }
 
+.homepage-cta {
+    margin: 3vh auto;
+    width: 400px;
+}
+
+.homepage-cta-card {
+    display: inline;
+    background-color: white;
+    margin: 2px;
+    padding: 5px;
+    font-size: calc(10px + 1vmin);
+    font-weight: bold;
+    box-shadow: 0 2px 6px -2px rgba(100, 100, 100, 0.788);
+}
+
 .homepage-card {
     display: flex;
     flex-direction: row;

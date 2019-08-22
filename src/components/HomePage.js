@@ -39,6 +39,11 @@ export default function HomePage(props) {
                     <p className="homepage-title">YOUR WAY.</p>
                 </div>
 
+                <div className="homepage-cta">
+                    <p>Sign up to create and follow <span className="homepage-cta-card">TOPICS</span> like the ones you see below.</p>
+                    <p>You'll get the top headlines for each, so you can stay current with the news you care about.</p>
+                </div>
+
                 <div className="homepage-buttons">
                     <Link className="button primary" to="/register">Sign Up</Link>
                     <Link className="button" to="/login">Login</Link>
