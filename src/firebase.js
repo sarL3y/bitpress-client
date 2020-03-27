@@ -2,7 +2,7 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
 
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 // Firebase configuration
 const firebaseConfig = {
